@@ -3,13 +3,13 @@
  * @namespace     css.mixins
  * @type          Mixin 
  * @platform      css
- * @status       stable
+ * @status        stable
  * 
  * This mixin allows you to apply the destyle css with some additional
  * reset rules like:
  * - Reset `mark` background color
  * - Font smoothing to "antialiased" for --webkit browsers
- * - Apply `user-select: none` to all elements except `input`, `textarea`, and `[contenteditable]`
+ * - Apply `user-select: none` to all elements except input, textarea, [contenteditable], code, h1, h2, h3, h4, h5, h6, p, td, th, blockquote, li, dl, dt, dd
  * - Remove the default outline
  * 
  * @return        {Css}                The generated css
@@ -22,8 +22,46 @@
  * @author      Olivier Bossel <olivier.bossel@gmail.com> (https://hello@blackbyte.space)
  */
 @mixin s-reset {
-  *:not(input, textarea, [contenteditable]) {
+  * {
     user-select: none;
+
+    &:is(
+        input,
+        textarea,
+        [contenteditable],
+        code,
+        code *,
+        h1,
+        h1 *,
+        h2,
+        h2 *,
+        h3,
+        h3 *,
+        h4,
+        h4 *,
+        h5,
+        h5 *,
+        h6,
+        h6 *,
+        p,
+        p *,
+        td,
+        td *,
+        th,
+        th *,
+        blockquote,
+        blockquote *,
+        li,
+        li *,
+        dl,
+        dl *,
+        dt,
+        dt *,
+        dd,
+        dd *
+      ) {
+      user-select: text;
+    }
   }
 
   a,
