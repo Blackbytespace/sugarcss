@@ -50,7 +50,7 @@ export const env = {
     functions: {},
     rules: {},
     settings: {
-        verbose: true,
+        verbose: false,
         mobileFirst: false,
         scalable: ['padding'],
         pxToRem: true,
