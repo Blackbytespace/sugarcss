@@ -1,7 +1,7 @@
 {
   "name": "@blackbyte/sugarcss",
   "description": "Add a sugar in your css with features like advanced color handling, media queries management, and a lot more...",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "keywords": [
     "css",
     "lightningcss",
@@ -21,7 +21,8 @@
   },
   "files": [
     "dist/",
-    "src/node/sugarcss.types.ts"
+    "src/node/sugarcss.types.ts",
+    "src/css/"
   ],
   "main": "./dist/node/sugarcss.js",
   "types": "./src/node/sugarcss.types.ts",
