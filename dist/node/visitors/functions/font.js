@@ -1,4 +1,4 @@
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 /**
  * @name            s-font
  * @namespace       css.function
@@ -32,7 +32,7 @@ import __parseArgs from '../../utils/parseArgs.js';
  * @author          Olivier Bossel <olivier.bossel@gmail.com> (https://hello@blackbyte.space)
  */
 export default function font(value, settings) {
-    const args = __parseArgs(value.arguments, ['name']);
+    const args = parseArgs(value.arguments, ['name']);
     const props = [];
     props.push(`var(--s-font-${args.values.name}-style, normal)`);
     props.push(`var(--s-font-${args.values.name}-variant, normal)`);

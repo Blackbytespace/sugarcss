@@ -1,4 +1,4 @@
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 /**
  * @name            s-shade
  * @namespace       css.declaration
@@ -49,7 +49,7 @@ import __parseArgs from '../../utils/parseArgs.js';
 export default function share(v, settings) {
     var _a;
     const shade = v.name.replace(`--s-shade-`, '');
-    const args = __parseArgs(v.value);
+    const args = parseArgs(v.value);
     const result = [];
     // save in config
     let finalShade = {};

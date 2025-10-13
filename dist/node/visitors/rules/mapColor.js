@@ -1,4 +1,4 @@
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 /**
  * @name            s-map-color
  * @namespace       css.rule
@@ -39,7 +39,7 @@ import __parseArgs from '../../utils/parseArgs.js';
  */
 export default function color(v, settings) {
     // parse args
-    const args = Object.assign({}, __parseArgs(v.prelude, ['name', 'to']));
+    const args = Object.assign({}, parseArgs(v.prelude, ['name', 'to']));
     args.values = Object.assign({ to: 'current', name: 'accent' }, args.values);
     const ast = [
         {

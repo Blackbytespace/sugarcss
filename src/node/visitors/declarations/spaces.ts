@@ -1,8 +1,6 @@
-import { __camelCase } from '@blackbyte/sugar/string';
-import { env } from '../../sugarcss.js';
+import { camelCase } from '@blackbyte/sugar/string';
 import { TSugarCssSettings } from '../../sugarcss.types.js';
-import __parseArgs from '../../utils/parseArgs.js';
-import __toRem from '../../utils/toRem.js';
+import parseArgs from '../../utils/parseArgs.js';
 
 /**
  * @name            s-spaces
@@ -34,7 +32,7 @@ import __toRem from '../../utils/toRem.js';
  */
 
 export default function spaces(v, settings: TSugarCssSettings): any {
-  const args = __parseArgs(v.value, ['min', 'max', 'easing'], {
+  const args = parseArgs(v.value, ['min', 'max', 'easing'], {
     separator: ['white-space', 'comma'],
   });
 
@@ -42,15 +40,12 @@ export default function spaces(v, settings: TSugarCssSettings): any {
 
   let value = args.values;
   if (value.easing) {
-    value.easing = __camelCase(value.easing);
+    value.easing = camelCase(value.easing);
   }
-
-  // save in config
-  env.spaces = value;
 
   // custom css variables
   for (let [key, value] of Object.entries(args.ast)) {
-    const finalValue = __toRem(value);
+    const finalValue = value;
     result.push({
       property: `--s-spaces-${key}`,
       value: {

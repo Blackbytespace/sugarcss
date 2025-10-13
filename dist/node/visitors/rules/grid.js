@@ -1,6 +1,6 @@
 import { env } from '../../sugarcss.js';
-import __gridAst from './grid/grid.ast.js';
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
+import gridAst from './grid/grid.ast.js';
 /**
  * @name            s-grid
  * @namespace       css.rule
@@ -37,7 +37,7 @@ import __parseArgs from '../../utils/parseArgs.js';
  */
 export default function grid(v, settings) {
     // parse args
-    const args = Object.assign({}, __parseArgs(v.prelude, ['layout', 'gap'], {
+    const args = Object.assign({}, parseArgs(v.prelude, ['layout', 'gap'], {
         separator: ['white-space', 'comma'],
     }));
     // grid
@@ -127,6 +127,6 @@ export default function grid(v, settings) {
         rowsEndByArea,
         gap: args.ast.gap,
     };
-    return __gridAst(gridArgs);
+    return gridAst(gridArgs);
 }
 //# sourceMappingURL=grid.js.map

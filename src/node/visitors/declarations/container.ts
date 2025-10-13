@@ -1,7 +1,6 @@
-import { __dashCase } from '@blackbyte/sugar/string';
+import { dashCase } from '@blackbyte/sugar/string';
 import { TSugarCssSettings } from '../../sugarcss.types.js';
-import __parseArgs from '../../utils/parseArgs.js';
-import __toRem from '../../utils/toRem.js';
+import parseArgs from '../../utils/parseArgs.js';
 
 /**
  * @name            s-container
@@ -32,7 +31,7 @@ import __toRem from '../../utils/toRem.js';
  */
 export default function container(v, settings: TSugarCssSettings): any {
   const name = v.name.replace(`--s-container-`, ''),
-    args = __parseArgs(v.value, ['minWidth', 'maxWidth', 'sidePadding'], {
+    args = parseArgs(v.value, ['minWidth', 'maxWidth', 'sidePadding'], {
       separator: ['white-space', 'comma'],
     });
 
@@ -48,15 +47,15 @@ export default function container(v, settings: TSugarCssSettings): any {
 
   for (let [key, value] of Object.entries(args.values)) {
     result.push({
-      property: `--s-container-${name}-${__dashCase(key)}`,
+      property: `--s-container-${name}-${dashCase(key)}`,
       value: {
-        name: `--s-container-${name}-${__dashCase(key)}`,
+        name: `--s-container-${name}-${dashCase(key)}`,
         value: [
           {
             type: 'length',
             value: {
-              unit: 'rem',
-              value: __toRem(value),
+              unit: 'px',
+              value,
             },
           },
         ],

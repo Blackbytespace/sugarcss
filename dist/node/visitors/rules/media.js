@@ -72,7 +72,7 @@ export default function media(v, settings) {
                 media = parts[0];
             }
             else {
-                (operator = parts[0]), (media = parts.slice(1).join('-'));
+                ((operator = parts[0]), (media = parts.slice(1).join('-')));
             }
             // make sure the requested media exists
             if (!env.medias[media]) {

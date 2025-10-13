@@ -1,4 +1,4 @@
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 /**
  * @name            s-font-family
  * @namespace       css.function
@@ -24,7 +24,7 @@ import __parseArgs from '../../utils/parseArgs.js';
  * @author          Olivier Bossel <olivier.bossel@gmail.com> (https://hello@blackbyte.space)
  */
 export default function fontFamily(value, settings) {
-    const args = __parseArgs(value.arguments, ['name'], {
+    const args = parseArgs(value.arguments, ['name'], {
         separator: ['white-space', 'comma'],
     });
     return {

@@ -1,4 +1,4 @@
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 /**
  * @name            s-weight
  * @namespace       css.rule
@@ -39,7 +39,7 @@ import __parseArgs from '../../utils/parseArgs.js';
  */
 export default function weight(v, settings) {
     // parse args
-    const args = Object.assign({}, __parseArgs(v.prelude, ['weight']));
+    const args = Object.assign({}, parseArgs(v.prelude, ['weight']));
     args.values = Object.assign({}, args.values);
     const ast = [
         {

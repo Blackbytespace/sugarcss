@@ -1,5 +1,5 @@
 import { TSugarCssSettings } from '../../sugarcss.types.js';
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 
 /**
  * @name            s-map-color
@@ -43,7 +43,7 @@ import __parseArgs from '../../utils/parseArgs.js';
 export default function color(v: any, settings: TSugarCssSettings): any {
   // parse args
   const args = {
-    ...__parseArgs(v.prelude, ['name', 'to']),
+    ...parseArgs(v.prelude, ['name', 'to']),
   };
   args.values = {
     to: 'current',

@@ -1,4 +1,4 @@
-import { __convert } from '@blackbyte/sugar/color';
+import { convert } from '@blackbyte/sugar/color';
 /**
  * @name            s-color
  * @namespace       css.declaration
@@ -85,7 +85,7 @@ export default function color(v, settings) {
                 },
             },
         ];
-        const hslaColor = __convert((_k = (_j = v.value[0]) === null || _j === void 0 ? void 0 : _j.value) !== null && _k !== void 0 ? _k : v.value[0], 'hsla'), hexColor = __convert((_m = (_l = v.value[0]) === null || _l === void 0 ? void 0 : _l.value) !== null && _m !== void 0 ? _m : v.value[0], 'hex');
+        const hslaColor = convert((_k = (_j = v.value[0]) === null || _j === void 0 ? void 0 : _j.value) !== null && _k !== void 0 ? _k : v.value[0], 'hsla'), hexColor = convert((_m = (_l = v.value[0]) === null || _l === void 0 ? void 0 : _l.value) !== null && _m !== void 0 ? _m : v.value[0], 'hex');
         ['h', 's', 'l', 'a'].forEach((key) => {
             result.push({
                 property: `--s-color-${name}-${key}`,

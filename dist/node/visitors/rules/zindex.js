@@ -1,4 +1,4 @@
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 /**
  * @name            s-zindex
  * @namespace       css.rule
@@ -29,7 +29,7 @@ import __parseArgs from '../../utils/parseArgs.js';
  */
 export default function zindex(v, settings) {
     // parse args
-    const args = Object.assign({}, __parseArgs(v.prelude, ['name', 'offset']));
+    const args = Object.assign({}, parseArgs(v.prelude, ['name', 'offset']));
     args.values = Object.assign({ offset: 0 }, args.values);
     const ast = [
         {

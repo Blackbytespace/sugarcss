@@ -1,5 +1,5 @@
 import { TSugarCssSettings } from '../../sugarcss.types.js';
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 
 /**
  * @name            s-font-family
@@ -29,7 +29,7 @@ export default function fontFamily(
   value: any,
   settings: TSugarCssSettings,
 ): any {
-  const args = __parseArgs(value.arguments, ['name'], {
+  const args = parseArgs(value.arguments, ['name'], {
     separator: ['white-space', 'comma'],
   });
 

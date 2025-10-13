@@ -1,7 +1,6 @@
 import { TSugarCssSettings } from '../../sugarcss.types.js';
-import __parseArgs from '../../utils/parseArgs.js';
-
-import __argsToCustomPropertiesAst from '../../utils/argsToCustomPropertiesAst.js';
+import argsToCustomPropertiesAst from '../../utils/argsToCustomPropertiesAst.js';
+import parseArgs from '../../utils/parseArgs.js';
 
 /**
  * @name            s-font
@@ -37,7 +36,7 @@ import __argsToCustomPropertiesAst from '../../utils/argsToCustomPropertiesAst.j
 
 export default function font(v, settings: TSugarCssSettings): any {
   const name = v.name.replace(`--s-font-`, '');
-  const args = __parseArgs(v.value, ['family', 'weight', 'style', 'variant'], {
+  const args = parseArgs(v.value, ['family', 'weight', 'style', 'variant'], {
     separator: ['comma', 'white-space'],
     debug: false,
   });
@@ -50,6 +49,6 @@ export default function font(v, settings: TSugarCssSettings): any {
     );
   }
 
-  const result: any[] = __argsToCustomPropertiesAst(v.name, args);
+  const result: any[] = argsToCustomPropertiesAst(v.name, args);
   return result;
 }

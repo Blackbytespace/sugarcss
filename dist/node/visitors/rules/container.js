@@ -1,4 +1,4 @@
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 /**
  * @name            s-container
  * @namespace       css.rule
@@ -32,7 +32,7 @@ import __parseArgs from '../../utils/parseArgs.js';
  */
 export default function container(v, settings) {
     // parse args
-    const args = Object.assign({}, __parseArgs(v.prelude, ['container']));
+    const args = Object.assign({}, parseArgs(v.prelude, ['container']));
     args.values = Object.assign({ container: 'default' }, args.values);
     const ast = [
         {

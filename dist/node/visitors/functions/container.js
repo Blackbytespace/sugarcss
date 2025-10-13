@@ -1,4 +1,4 @@
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 /**
  * @name            s-container
  * @namespace       css.function
@@ -33,7 +33,7 @@ import __parseArgs from '../../utils/parseArgs.js';
  * @author          Olivier Bossel <olivier.bossel@gmail.com> (https://hello@blackbyte.space)
  */
 export default function container(value, settings) {
-    const args = __parseArgs(value.arguments, ['prop', 'container']);
+    const args = parseArgs(value.arguments, ['prop', 'container']);
     args.values = Object.assign({ container: 'default', prop: 'width' }, args.values);
     const props = [];
     switch (args.values.prop) {

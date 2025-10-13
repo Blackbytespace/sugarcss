@@ -1,7 +1,6 @@
 import { TSugarCssSettings } from '../../sugarcss.types.js';
-import __parseArgs from '../../utils/parseArgs.js';
-
-import __argsToCustomPropertiesAst from '../../utils/argsToCustomPropertiesAst.js';
+import argsToCustomPropertiesAst from '../../utils/argsToCustomPropertiesAst.js';
+import parseArgs from '../../utils/parseArgs.js';
 
 /**
  * @name            s-typo
@@ -37,7 +36,7 @@ import __argsToCustomPropertiesAst from '../../utils/argsToCustomPropertiesAst.j
 
 export default function typo(v, settings: TSugarCssSettings): any {
   const name = v.name.replace(`--s-typo-`, '');
-  const args = __parseArgs(
+  const args = parseArgs(
     v.value,
     [
       'font',
@@ -60,6 +59,6 @@ export default function typo(v, settings: TSugarCssSettings): any {
     );
   }
 
-  const result: any[] = __argsToCustomPropertiesAst(v.name, args);
+  const result: any[] = argsToCustomPropertiesAst(v.name, args);
   return result;
 }

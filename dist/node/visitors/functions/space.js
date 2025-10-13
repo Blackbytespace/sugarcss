@@ -1,5 +1,5 @@
 import { env } from '../../sugarcss.js';
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 /**
  * @name            s-spaces
  * @namespace       css.function
@@ -39,7 +39,7 @@ import __parseArgs from '../../utils/parseArgs.js';
  * @author          Olivier Bossel <olivier.bossel@gmail.com> (https://hello@blackbyte.space)
  */
 export default function space(value, settings) {
-    const args = __parseArgs(value.arguments, [], {
+    const args = parseArgs(value.arguments, [], {
         separator: ['white-space', 'comma'],
     });
     const spaceArgs = env.spaces;

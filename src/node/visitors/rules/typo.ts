@@ -1,5 +1,5 @@
 import { TSugarCssSettings } from '../../sugarcss.types.js';
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 
 /**
  * @name            s-typo
@@ -37,7 +37,7 @@ import __parseArgs from '../../utils/parseArgs.js';
 export default function typo(v: any, settings: TSugarCssSettings): any {
   // parse args
   const args = {
-    ...__parseArgs(v.prelude, ['name']),
+    ...parseArgs(v.prelude, ['name']),
   };
   args.values = {
     name: 'default',

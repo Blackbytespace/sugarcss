@@ -1,5 +1,6 @@
 import { env } from '../../sugarcss.js';
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
+import { savePersistentEnv } from '../../utils/savePersistentEnv.js';
 /**
  * @name            s-grid
  * @namespace       css.declaration
@@ -27,7 +28,7 @@ import __parseArgs from '../../utils/parseArgs.js';
  * @author          Olivier Bossel <olivier.bossel@gmail.com> (https://hello@blackbyte.space)
  */
 export default function grid(v, settings) {
-    const name = v.name.replace(`--s-grid-`, ''), args = __parseArgs(v.value, ['layout', 'gap'], {
+    const name = v.name.replace(`--s-grid-`, ''), args = parseArgs(v.value, ['layout', 'gap'], {
         separator: ['white-space', 'comma'],
     });
     const result = [];
@@ -59,6 +60,8 @@ export default function grid(v, settings) {
         delete displayLayout.ast;
         console.log(`Registered grid <cyan>${name}</cyan>: <yellow>${JSON.stringify(displayLayout)}</yellow>`);
     }
+    // save persistent env
+    savePersistentEnv();
     return result;
 }
 //# sourceMappingURL=grid.js.map

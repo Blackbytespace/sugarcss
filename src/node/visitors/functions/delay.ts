@@ -1,5 +1,5 @@
 import { TSugarCssSettings } from '../../sugarcss.types.js';
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 
 /**
  * @name            s-delay
@@ -32,7 +32,7 @@ import __parseArgs from '../../utils/parseArgs.js';
  */
 export default function delay(value: any, settings: TSugarCssSettings): any {
   const args = {
-    ...__parseArgs(value.arguments, ['nameOrDelay', 'delay'], {
+    ...parseArgs(value.arguments, ['nameOrDelay', 'delay'], {
       separator: ['white-space', 'comma'],
     }),
   };
@@ -44,7 +44,7 @@ export default function delay(value: any, settings: TSugarCssSettings): any {
   let delay =
     typeof args.values.nameOrDelay === 'number'
       ? args.values.nameOrDelay
-      : args.values.delay ?? 0;
+      : (args.values.delay ?? 0);
   if (typeof name === 'number') {
     delay = 0;
   }

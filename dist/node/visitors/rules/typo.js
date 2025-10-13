@@ -1,4 +1,4 @@
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 /**
  * @name            s-typo
  * @namespace       css.rule
@@ -33,7 +33,7 @@ import __parseArgs from '../../utils/parseArgs.js';
  */
 export default function typo(v, settings) {
     // parse args
-    const args = Object.assign({}, __parseArgs(v.prelude, ['name']));
+    const args = Object.assign({}, parseArgs(v.prelude, ['name']));
     args.values = Object.assign({ name: 'default' }, args.values);
     const ast = [
         {

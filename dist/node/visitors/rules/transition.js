@@ -1,5 +1,5 @@
 import { camelCase } from '@blackbyte/sugar/string';
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 /**
  * @name            s-transition
  * @namespace       css.rule
@@ -31,7 +31,7 @@ import __parseArgs from '../../utils/parseArgs.js';
  */
 export default function transition(v, settings) {
     // parse args
-    const args = Object.assign({}, __parseArgs(v.prelude, ['nameOrModifiers', 'modifiers'], {}));
+    const args = Object.assign({}, parseArgs(v.prelude, ['nameOrModifiers', 'modifiers'], {}));
     let name = 'default', modifiers = {};
     if (typeof args.values.nameOrModifiers === 'string') {
         name = args.values.nameOrModifiers;

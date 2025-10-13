@@ -1,5 +1,5 @@
 import { TSugarCssSettings } from '../../sugarcss.types.js';
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 
 /**
  * @name            s-delay
@@ -32,7 +32,7 @@ import __parseArgs from '../../utils/parseArgs.js';
 
 export default function grid(v, settings: TSugarCssSettings): any {
   const name = v.name.replace(`--s-delay-`, ''),
-    args = __parseArgs(v.value, ['delay'], {
+    args = parseArgs(v.value, ['delay'], {
       separator: ['white-space', 'comma'],
     });
 

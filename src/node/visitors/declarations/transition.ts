@@ -1,6 +1,5 @@
-import { env } from '../../sugarcss.js';
 import { TSugarCssSettings } from '../../sugarcss.types.js';
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 
 /**
  * @name            s-transition
@@ -36,7 +35,7 @@ import __parseArgs from '../../utils/parseArgs.js';
 
 export default function transition(v, settings: TSugarCssSettings): any {
   const name = v.name.replace(`--s-transition-`, ''),
-    args = __parseArgs(
+    args = parseArgs(
       v.value,
       ['property', 'duration', 'timing-function', 'delay'],
       {
@@ -45,12 +44,6 @@ export default function transition(v, settings: TSugarCssSettings): any {
     );
 
   const result: any[] = [];
-
-  // save in env
-  env.transitions[name] = {
-    ...args.values,
-    ast: v,
-  };
 
   // custom css variables
   for (let [key, value] of Object.entries(args.ast)) {

@@ -1,6 +1,6 @@
 import { TSugarCssSettings } from '../../sugarcss.types.js';
 
-import { __convert } from '@blackbyte/sugar/color';
+import { convert } from '@blackbyte/sugar/color';
 
 /**
  * @name            s-color
@@ -101,8 +101,8 @@ export default function color(v, settings: TSugarCssSettings): any {
       },
     ];
 
-    const hslaColor = __convert(v.value[0]?.value ?? v.value[0], 'hsla'),
-      hexColor = __convert(v.value[0]?.value ?? v.value[0], 'hex');
+    const hslaColor = convert(v.value[0]?.value ?? v.value[0], 'hsla'),
+      hexColor = convert(v.value[0]?.value ?? v.value[0], 'hex');
 
     ['h', 's', 'l', 'a'].forEach((key) => {
       result.push({

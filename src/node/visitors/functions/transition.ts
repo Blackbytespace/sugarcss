@@ -1,5 +1,5 @@
 import { TSugarCssSettings } from '../../sugarcss.types.js';
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 
 /**
  * @name            s-transition
@@ -33,7 +33,7 @@ export default function transition(
   settings: TSugarCssSettings,
 ): any {
   const args = {
-    ...__parseArgs(value.arguments, ['name'], {
+    ...parseArgs(value.arguments, ['name'], {
       separator: ['white-space', 'comma'],
     }),
   };

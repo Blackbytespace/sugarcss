@@ -1,6 +1,5 @@
-import { __dashCase } from '@blackbyte/sugar/string';
-import __parseArgs from '../../utils/parseArgs.js';
-import __toRem from '../../utils/toRem.js';
+import { dashCase } from '@blackbyte/sugar/string';
+import parseArgs from '../../utils/parseArgs.js';
 /**
  * @name            s-container
  * @namespace       css.declaration
@@ -29,7 +28,7 @@ import __toRem from '../../utils/toRem.js';
  * @author          Olivier Bossel <olivier.bossel@gmail.com> (https://hello@blackbyte.space)
  */
 export default function container(v, settings) {
-    const name = v.name.replace(`--s-container-`, ''), args = __parseArgs(v.value, ['minWidth', 'maxWidth', 'sidePadding'], {
+    const name = v.name.replace(`--s-container-`, ''), args = parseArgs(v.value, ['minWidth', 'maxWidth', 'sidePadding'], {
         separator: ['white-space', 'comma'],
     });
     if (settings.verbose) {
@@ -38,15 +37,15 @@ export default function container(v, settings) {
     const result = [];
     for (let [key, value] of Object.entries(args.values)) {
         result.push({
-            property: `--s-container-${name}-${__dashCase(key)}`,
+            property: `--s-container-${name}-${dashCase(key)}`,
             value: {
-                name: `--s-container-${name}-${__dashCase(key)}`,
+                name: `--s-container-${name}-${dashCase(key)}`,
                 value: [
                     {
                         type: 'length',
                         value: {
-                            unit: 'rem',
-                            value: __toRem(value),
+                            unit: 'px',
+                            value,
                         },
                     },
                 ],

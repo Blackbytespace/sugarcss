@@ -1,4 +1,4 @@
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 /**
  * @name            s-fit
  * @namespace       css.rule
@@ -28,7 +28,7 @@ import __parseArgs from '../../utils/parseArgs.js';
  */
 export default function fit(v, settings) {
     // parse args
-    const args = Object.assign({}, __parseArgs(v.prelude, ['position', 'center']));
+    const args = Object.assign({}, parseArgs(v.prelude, ['position', 'center']));
     args.values = Object.assign({ name: 'absolute', center: false }, args.values);
     let position = args.values.position;
     if (position === 'abs')

@@ -1,5 +1,5 @@
 import { TSugarCssSettings } from '../../sugarcss.types.js';
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 
 /**
  * @name            s-shade
@@ -51,7 +51,7 @@ import __parseArgs from '../../utils/parseArgs.js';
 
 export default function share(v, settings: TSugarCssSettings): any {
   const shade = v.name.replace(`--s-shade-`, '');
-  const args = __parseArgs(v.value);
+  const args = parseArgs(v.value);
   const result: any[] = [];
 
   // save in config

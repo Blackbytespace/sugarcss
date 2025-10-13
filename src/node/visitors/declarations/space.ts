@@ -1,6 +1,5 @@
 import { TSugarCssSettings } from '../../sugarcss.types.js';
-import __parseArgs from '../../utils/parseArgs.js';
-import __toRem from '../../utils/toRem.js';
+import parseArgs from '../../utils/parseArgs.js';
 
 /**
  * @name            s-space
@@ -34,7 +33,7 @@ import __toRem from '../../utils/toRem.js';
 
 export default function space(v, settings: TSugarCssSettings): any {
   const name = v.name.replace(`--s-space-`, '').replace(/\-[a-z]$/, '');
-  const args = __parseArgs(v.value, ['value'], {
+  const args = parseArgs(v.value, ['value'], {
     separator: ['white-space', 'comma'],
   });
 
@@ -49,13 +48,13 @@ export default function space(v, settings: TSugarCssSettings): any {
       value: [
         typeof value.value === 'string'
           ? args.ast.value
-          : __toRem({
+          : {
               type: 'length',
               value: {
                 unit: 'px',
                 value: value.value,
               },
-            }),
+            },
       ],
     },
   });

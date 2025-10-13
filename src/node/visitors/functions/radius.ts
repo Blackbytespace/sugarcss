@@ -1,5 +1,5 @@
 import { TSugarCssSettings } from '../../sugarcss.types.js';
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 
 /**
  * @name            s-radius
@@ -30,7 +30,7 @@ import __parseArgs from '../../utils/parseArgs.js';
 
 export default function radius(value: any, settings: TSugarCssSettings): any {
   const args = {
-    ...__parseArgs(value.arguments, ['name'], {
+    ...parseArgs(value.arguments, ['name'], {
       separator: ['white-space', 'comma'],
     }),
   };

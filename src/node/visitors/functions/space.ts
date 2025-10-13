@@ -1,6 +1,6 @@
 import { env } from '../../sugarcss.js';
 import { TSugarCssSettings } from '../../sugarcss.types.js';
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 
 /**
  * @name            s-spaces
@@ -42,7 +42,7 @@ import __parseArgs from '../../utils/parseArgs.js';
  */
 
 export default function space(value: any, settings: TSugarCssSettings): any {
-  const args = __parseArgs(value.arguments, [], {
+  const args = parseArgs(value.arguments, [], {
     separator: ['white-space', 'comma'],
   });
 

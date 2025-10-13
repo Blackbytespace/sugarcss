@@ -1,5 +1,4 @@
-import { env } from '../../sugarcss.js';
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 /**
  * @name            s-transition
  * @namespace       css.declaration
@@ -32,12 +31,10 @@ import __parseArgs from '../../utils/parseArgs.js';
  * @author          Olivier Bossel <olivier.bossel@gmail.com> (https://hello@blackbyte.space)
  */
 export default function transition(v, settings) {
-    const name = v.name.replace(`--s-transition-`, ''), args = __parseArgs(v.value, ['property', 'duration', 'timing-function', 'delay'], {
+    const name = v.name.replace(`--s-transition-`, ''), args = parseArgs(v.value, ['property', 'duration', 'timing-function', 'delay'], {
         separator: ['white-space', 'comma'],
     });
     const result = [];
-    // save in env
-    env.transitions[name] = Object.assign(Object.assign({}, args.values), { ast: v });
     // custom css variables
     for (let [key, value] of Object.entries(args.ast)) {
         result.push({

@@ -1,5 +1,5 @@
 import { TSugarCssSettings } from '../../sugarcss.types.js';
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 
 /**
  * @name            s-fit
@@ -32,7 +32,7 @@ import __parseArgs from '../../utils/parseArgs.js';
 export default function fit(v: any, settings: TSugarCssSettings): any {
   // parse args
   const args = {
-    ...__parseArgs(v.prelude, ['position', 'center']),
+    ...parseArgs(v.prelude, ['position', 'center']),
   };
   args.values = {
     name: 'absolute',

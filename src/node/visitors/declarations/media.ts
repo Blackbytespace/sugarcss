@@ -1,7 +1,7 @@
 import { env } from '../../sugarcss.js';
 import { TSugarCssSettings } from '../../sugarcss.types.js';
-import __parseArgs from '../../utils/parseArgs.js';
-import __toRem from '../../utils/toRem.js';
+import parseArgs from '../../utils/parseArgs.js';
+import { savePersistentEnv } from '../../utils/savePersistentEnv.js';
 
 /**
  * @name            s-media
@@ -42,7 +42,7 @@ import __toRem from '../../utils/toRem.js';
 
 export default function media(v, settings: TSugarCssSettings): any {
   const media = v.name.replace(`--s-media-`, ''),
-    args = __parseArgs(v.value, ['min', 'max'], {
+    args = parseArgs(v.value, ['min', 'max'], {
       separator: ['white-space', 'comma'],
     });
 
@@ -61,7 +61,7 @@ export default function media(v, settings: TSugarCssSettings): any {
       property: `--s-media-${media}-min`,
       value: {
         name: `--s-media-${media}-min`,
-        value: [__toRem(args.ast.min)],
+        value: [args.ast.min],
       },
     });
   }
@@ -71,7 +71,7 @@ export default function media(v, settings: TSugarCssSettings): any {
       property: `--s-media-${media}-max`,
       value: {
         name: `--s-media-${media}-max`,
-        value: [__toRem(args.ast.max)],
+        value: [args.ast.max],
       },
     });
   }
@@ -83,6 +83,9 @@ export default function media(v, settings: TSugarCssSettings): any {
       )}</yellow>`,
     );
   }
+
+  // save persistent env
+  savePersistentEnv();
 
   return result;
 }

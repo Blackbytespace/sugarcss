@@ -1,7 +1,7 @@
 import { TSugarCssSettings } from '../../sugarcss.types.js';
-import __parseArgs from '../../utils/parseArgs.js';
-import __hideAst from './scrollbar/hide.ast.js';
-import __scrollbarAst from './scrollbar/scrollbar.ast.js';
+import parseArgs from '../../utils/parseArgs.js';
+import hideAst from './scrollbar/hide.ast.js';
+import scrollbarAst from './scrollbar/scrollbar.ast.js';
 
 /**
  * @name            s-scrollbar
@@ -31,11 +31,11 @@ import __scrollbarAst from './scrollbar/scrollbar.ast.js';
 
 export default function scrollbar(v: any, settings: TSugarCssSettings): any {
   // parse args
-  const args = __parseArgs(v.prelude);
+  const args = parseArgs(v.prelude);
 
   if (args.values.arg0 === 'hide') {
-    return __hideAst();
+    return hideAst();
   } else {
-    return __scrollbarAst(args.ast.arg0, args.ast.arg1, args.ast.arg2);
+    return scrollbarAst(args.ast.arg0, args.ast.arg1, args.ast.arg2);
   }
 }

@@ -1,6 +1,5 @@
-import __parseArgs from '../../utils/parseArgs.js';
-import __toRem from '../../utils/toRem.js';
-import { __dashCase } from '@blackbyte/sugar/string';
+import { dashCase } from '@blackbyte/sugar/string';
+import parseArgs from '../../utils/parseArgs.js';
 /**
  * @name            s-radius
  * @namespace       css.declaration
@@ -34,7 +33,7 @@ import { __dashCase } from '@blackbyte/sugar/string';
  * @author          Olivier Bossel <olivier.bossel@gmail.com> (https://hello@blackbyte.space)
  */
 export default function radius(v, settings) {
-    const name = v.name.replace(`--s-radius-`, ''), args = __parseArgs(v.value, [], {
+    const name = v.name.replace(`--s-radius-`, ''), args = parseArgs(v.value, [], {
         separator: ['white-space', 'comma'],
     });
     const result = [];
@@ -77,17 +76,17 @@ export default function radius(v, settings) {
     // custom css variables
     ['topLeft', 'topRight', 'bottomRight', 'bottomLeft'].forEach((corner) => {
         result.push({
-            property: `--s-radius-${name}-${__dashCase(corner)}`,
+            property: `--s-radius-${name}-${dashCase(corner)}`,
             value: {
-                name: `--s-radius-${name}-${__dashCase(corner)}`,
+                name: `--s-radius-${name}-${dashCase(corner)}`,
                 value: [
-                    __toRem({
+                    {
                         type: 'length',
                         value: {
                             unit: 'px',
                             value: values[corner],
                         },
-                    }),
+                    },
                 ],
             },
         });
@@ -97,13 +96,13 @@ export default function radius(v, settings) {
         value: {
             name: `--s-radius-${name}`,
             value: [
-                __toRem({
+                {
                     type: 'length',
                     value: {
                         unit: 'px',
                         value: values.topLeft,
                     },
-                }),
+                },
             ],
         },
     });

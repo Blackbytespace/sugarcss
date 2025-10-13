@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { env } from '../../sugarcss.js';
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 /**
  * @name            s-size
  * @namespace       css.function
@@ -40,7 +40,7 @@ import __parseArgs from '../../utils/parseArgs.js';
  * @author          Olivier Bossel <olivier.bossel@gmail.com> (https://hello@blackbyte.space)
  */
 export default function size(value, settings) {
-    const args = __parseArgs(value.arguments, [], {
+    const args = parseArgs(value.arguments, [], {
         separator: ['white-space', 'comma'],
     });
     const sizeArgs = env.sizes;

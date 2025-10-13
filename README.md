@@ -13,13 +13,14 @@ The CSS toolkit that you missed... like a sugar in your coffee!
 <!-- code_chunk_output -->
 
 - [Blackbyte SugarCSS](#blackbyte-sugarcss)
-  - [Go to website!](#go-to-websitehttpssugarcssblackbytespace)
+  - [Go to website!](#go-to-website)
   - [What is this?](#what-is-this)
   - [Get started](#get-started)
     - [1. Install the package](#1-install-the-package)
     - [2. Configure Vite](#2-configure-vite)
     - [3. Discover the API](#3-discover-the-api)
   - [Samples](#samples)
+      - [](#)
       - [Color management](#color-management)
       - [Color manipulation](#color-manipulation)
       - [The `current` color](#the-current-color)
@@ -51,7 +52,7 @@ Start using `@blackbyte/sugarcss` in your project with this quick guide.
 You can install `@blackbyte/sugarcss` using npm, yarn or pnpm.
 
 ```sh
-npm install @blackbyte/sugar
+npm install @blackbyte/sugarcss
 ```
 
 ### 2. Configure Vite

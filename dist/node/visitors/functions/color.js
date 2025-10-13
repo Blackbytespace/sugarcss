@@ -1,4 +1,4 @@
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 /**
  * @name            s-color
  * @namespace       css.function
@@ -43,7 +43,7 @@ import __parseArgs from '../../utils/parseArgs.js';
  */
 export default function color(value, settings) {
     var _a, _b, _c, _d, _e, _f, _g, _h, _j;
-    const args = __parseArgs(value.arguments, ['color', 'shade', 'modifiers']), availableModifiers = [
+    const args = parseArgs(value.arguments, ['color', 'shade', 'modifiers']), availableModifiers = [
         'lightness',
         'lighten',
         'darken',

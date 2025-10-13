@@ -10,22 +10,15 @@ export type TSugarCssRadius = {
 };
 
 export type TSugarCssEnv = {
-  remFactor: number;
+  persistentEnvs: string[];
   functions: Record<string, Function>;
   rules: Record<string, Function>;
   settings: TSugarCssSettings;
-  colors: Record<string, any>;
-  shades: Record<string, TSugarCssShade>;
   easingFunctions: Record<string, string>;
-  easings: Record<string, TSugarCssEasing>;
-  transitions: Record<string, TSugarCssTransition>;
   medias: Record<string, TSugarCssMedia>;
   grids: Record<string, TSugarCssGrid>;
   spaces: TSugarCssSpace;
   sizes: TSugarCssSize;
-  containers: Record<string, TSugarCssContainer>;
-  radiuses: Record<string, TSugarCssRadius>;
-  fonts: TSugarCssFonts;
 };
 
 export type TSugarCssGrid = {
@@ -60,6 +53,7 @@ export type TSugarCssFontsFont = {
 };
 
 export type TSugarCssSettings = {
+  remFactor: number;
   verbose: boolean;
   mobileFirst: boolean;
   scalable: string[];

@@ -1,5 +1,5 @@
-import __parseArgs from '../../utils/parseArgs.js';
-import __argsToCustomPropertiesAst from '../../utils/argsToCustomPropertiesAst.js';
+import argsToCustomPropertiesAst from '../../utils/argsToCustomPropertiesAst.js';
+import parseArgs from '../../utils/parseArgs.js';
 /**
  * @name            s-typo
  * @namespace       css.declaration
@@ -33,7 +33,7 @@ import __argsToCustomPropertiesAst from '../../utils/argsToCustomPropertiesAst.j
  */
 export default function typo(v, settings) {
     const name = v.name.replace(`--s-typo-`, '');
-    const args = __parseArgs(v.value, [
+    const args = parseArgs(v.value, [
         'font',
         'size',
         'line-height',
@@ -46,7 +46,7 @@ export default function typo(v, settings) {
     if (settings.verbose) {
         console.log(`Registered typo: <cyan>${name}</cyan>: <yellow>${JSON.stringify(args.values)}</yellow>`);
     }
-    const result = __argsToCustomPropertiesAst(v.name, args);
+    const result = argsToCustomPropertiesAst(v.name, args);
     return result;
 }
 //# sourceMappingURL=typo.js.map

@@ -1,4 +1,4 @@
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 /**
  * @name            s-delay
  * @namespace       css.declaration
@@ -28,7 +28,7 @@ import __parseArgs from '../../utils/parseArgs.js';
  * @author          Olivier Bossel <olivier.bossel@gmail.com> (https://hello@blackbyte.space)
  */
 export default function grid(v, settings) {
-    const name = v.name.replace(`--s-delay-`, ''), args = __parseArgs(v.value, ['delay'], {
+    const name = v.name.replace(`--s-delay-`, ''), args = parseArgs(v.value, ['delay'], {
         separator: ['white-space', 'comma'],
     });
     const result = [];

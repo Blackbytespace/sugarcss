@@ -1,6 +1,6 @@
 import { camelCase } from '@blackbyte/sugar/string';
 import { TSugarCssSettings } from '../../sugarcss.types.js';
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 
 /**
  * @name            s-transition
@@ -35,7 +35,7 @@ import __parseArgs from '../../utils/parseArgs.js';
 export default function transition(v: any, settings: TSugarCssSettings): any {
   // parse args
   const args = {
-    ...__parseArgs(v.prelude, ['nameOrModifiers', 'modifiers'], {}),
+    ...parseArgs(v.prelude, ['nameOrModifiers', 'modifiers'], {}),
   };
 
   let name = 'default',

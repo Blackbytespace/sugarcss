@@ -1,6 +1,6 @@
-import { __set } from '@blackbyte/sugar/object';
+import { set } from '@blackbyte/sugar/object';
 import { env } from '../sugarcss.js';
-import __toString from './toString.js';
+import toString from './toString.js';
 import __parsedArgsToRawValues from './parsedArgsToRawValues.js';
 export default function parseArgs(args, schema = [], settings) {
     var _a;
@@ -56,8 +56,8 @@ export default function parseArgs(args, schema = [], settings) {
             }
         }
         else if (arg.type === 'function' && arg.value.name === 'cubic-bezier') {
-            arg.rawValue = __toString(arg);
-            __set(resultArgs, currentProp, arg);
+            arg.rawValue = toString(arg);
+            set(resultArgs, currentProp, arg);
         }
         else if (arg.type === 'function' && env.functions[arg.value.name]) {
             const v = env.functions[arg.value.name](arg.value);
@@ -67,7 +67,7 @@ export default function parseArgs(args, schema = [], settings) {
             // get the raw value
             arg.rawValue = (_b = v.raw) !== null && _b !== void 0 ? _b : v;
             // set the resulting value
-            __set(resultArgs, currentProp, arg);
+            set(resultArgs, currentProp, arg);
             // update current prop
             currentProp = (_c = schema === null || schema === void 0 ? void 0 : schema[argId + 1]) !== null && _c !== void 0 ? _c : `arg${argId + 1}`;
             argId++;
@@ -79,7 +79,7 @@ export default function parseArgs(args, schema = [], settings) {
             // get the raw value
             arg.rawValue = arg.value.value;
             // handle others
-            __set(resultArgs, currentProp, arg);
+            set(resultArgs, currentProp, arg);
         }
     };
     for (let [i, arg] of args.entries()) {

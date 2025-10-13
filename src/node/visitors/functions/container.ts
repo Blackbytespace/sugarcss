@@ -1,5 +1,5 @@
 import { TSugarCssSettings } from '../../sugarcss.types.js';
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 
 /**
  * @name            s-container
@@ -38,7 +38,7 @@ export default function container(
   value: any,
   settings: TSugarCssSettings,
 ): any {
-  const args = __parseArgs(value.arguments, ['prop', 'container']);
+  const args = parseArgs(value.arguments, ['prop', 'container']);
   args.values = {
     container: 'default',
     prop: 'width',

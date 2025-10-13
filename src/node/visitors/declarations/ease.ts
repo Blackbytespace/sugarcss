@@ -1,5 +1,5 @@
 import { TSugarCssSettings } from '../../sugarcss.types.js';
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 
 /**
  * @name            s-ease
@@ -27,7 +27,7 @@ import __parseArgs from '../../utils/parseArgs.js';
  */
 export default function ease(v, settings: TSugarCssSettings): any {
   const name = v.name.replace(`--s-ease-`, ''),
-    args = __parseArgs(v.value, ['function'], {
+    args = parseArgs(v.value, ['function'], {
       separator: ['white-space', 'comma'],
     });
 

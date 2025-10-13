@@ -1,6 +1,7 @@
 import { env } from '../../sugarcss.js';
 import { TSugarCssSettings } from '../../sugarcss.types.js';
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
+import { savePersistentEnv } from '../../utils/savePersistentEnv.js';
 
 /**
  * @name            s-grid
@@ -31,7 +32,7 @@ import __parseArgs from '../../utils/parseArgs.js';
 
 export default function grid(v, settings: TSugarCssSettings): any {
   const name = v.name.replace(`--s-grid-`, ''),
-    args = __parseArgs(v.value, ['layout', 'gap'], {
+    args = parseArgs(v.value, ['layout', 'gap'], {
       separator: ['white-space', 'comma'],
     });
 
@@ -71,6 +72,9 @@ export default function grid(v, settings: TSugarCssSettings): any {
       )}</yellow>`,
     );
   }
+
+  // save persistent env
+  savePersistentEnv();
 
   return result;
 }

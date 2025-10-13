@@ -1,5 +1,5 @@
 import { TSugarCssSettings } from '../../sugarcss.types.js';
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 
 /**
  * @name            s-weight
@@ -42,7 +42,7 @@ import __parseArgs from '../../utils/parseArgs.js';
 export default function weight(v: any, settings: TSugarCssSettings): any {
   // parse args
   const args = {
-    ...__parseArgs(v.prelude, ['weight']),
+    ...parseArgs(v.prelude, ['weight']),
   };
   args.values = {
     ...args.values,

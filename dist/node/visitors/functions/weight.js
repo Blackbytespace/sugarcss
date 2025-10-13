@@ -1,4 +1,4 @@
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 /**
  * @name            s-weight
  * @namespace       css.function
@@ -38,7 +38,7 @@ import __parseArgs from '../../utils/parseArgs.js';
  * @author          Olivier Bossel <olivier.bossel@gmail.com> (https://hello@blackbyte.space)
  */
 export default function rem(value, settings) {
-    const args = Object.assign({}, __parseArgs(value.arguments, ['weight'], {
+    const args = Object.assign({}, parseArgs(value.arguments, ['weight'], {
         separator: ['white-space', 'comma'],
     }));
     const fallbacks = {

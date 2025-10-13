@@ -1,5 +1,5 @@
 import { TSugarCssSettings } from '../../sugarcss.types.js';
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 
 /**
  * @name            s-weight
@@ -41,7 +41,7 @@ import __parseArgs from '../../utils/parseArgs.js';
  */
 export default function rem(value: any, settings: TSugarCssSettings): any {
   const args = {
-    ...__parseArgs(value.arguments, ['weight'], {
+    ...parseArgs(value.arguments, ['weight'], {
       separator: ['white-space', 'comma'],
     }),
   };

@@ -1,4 +1,4 @@
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 /**
  * @name            s-delay
  * @namespace       css.function
@@ -30,7 +30,7 @@ import __parseArgs from '../../utils/parseArgs.js';
  */
 export default function delay(value, settings) {
     var _a;
-    const args = Object.assign({}, __parseArgs(value.arguments, ['nameOrDelay', 'delay'], {
+    const args = Object.assign({}, parseArgs(value.arguments, ['nameOrDelay', 'delay'], {
         separator: ['white-space', 'comma'],
     }));
     let name = typeof args.values.nameOrDelay === 'string'
@@ -38,7 +38,7 @@ export default function delay(value, settings) {
         : 'default';
     let delay = typeof args.values.nameOrDelay === 'number'
         ? args.values.nameOrDelay
-        : (_a = args.values.delay) !== null && _a !== void 0 ? _a : 0;
+        : ((_a = args.values.delay) !== null && _a !== void 0 ? _a : 0);
     if (typeof name === 'number') {
         delay = 0;
     }

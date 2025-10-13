@@ -1,4 +1,4 @@
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 /**
  * @name            s-transition
  * @namespace       css.function
@@ -26,7 +26,7 @@ import __parseArgs from '../../utils/parseArgs.js';
  * @author          Olivier Bossel <olivier.bossel@gmail.com> (https://hello@blackbyte.space)
  */
 export default function transition(value, settings) {
-    const args = Object.assign({}, __parseArgs(value.arguments, ['name'], {
+    const args = Object.assign({}, parseArgs(value.arguments, ['name'], {
         separator: ['white-space', 'comma'],
     }));
     args.values = Object.assign({ name: 'default' }, args.values);

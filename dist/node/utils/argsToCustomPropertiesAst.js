@@ -1,11 +1,11 @@
-import { __dashCase } from '@blackbyte/sugar/string';
+import { dashCase } from '@blackbyte/sugar/string';
 export default function argsToCustomPropertiesAst(name, args) {
     const result = [];
     for (let [key, value] of Object.entries(args.ast)) {
         result.push({
             property: 'custom',
             value: {
-                name: `${name}-${__dashCase(key)}`,
+                name: `${name}-${dashCase(key)}`,
                 value: [value],
             },
         });

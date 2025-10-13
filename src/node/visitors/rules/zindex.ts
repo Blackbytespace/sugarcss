@@ -1,5 +1,5 @@
 import { TSugarCssSettings } from '../../sugarcss.types.js';
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 
 /**
  * @name            s-zindex
@@ -32,7 +32,7 @@ import __parseArgs from '../../utils/parseArgs.js';
 export default function zindex(v: any, settings: TSugarCssSettings): any {
   // parse args
   const args = {
-    ...__parseArgs(v.prelude, ['name', 'offset']),
+    ...parseArgs(v.prelude, ['name', 'offset']),
   };
   args.values = {
     offset: 0,

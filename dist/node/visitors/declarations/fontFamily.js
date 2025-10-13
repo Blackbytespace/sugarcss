@@ -1,4 +1,4 @@
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 /**
  * @name            s-font-family
  * @namespace       css.declaration
@@ -28,7 +28,7 @@ import __parseArgs from '../../utils/parseArgs.js';
  */
 export default function fontFamily(v, settings) {
     const name = v.name.replace(`--s-font-family-`, '');
-    const args = __parseArgs(v.value, [], {
+    const args = parseArgs(v.value, [], {
         separator: ['white-space', 'comma'],
     });
     const result = [];

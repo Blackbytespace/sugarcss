@@ -1,5 +1,5 @@
-import __parseArgs from '../../utils/parseArgs.js';
-import __argsToCustomPropertiesAst from '../../utils/argsToCustomPropertiesAst.js';
+import argsToCustomPropertiesAst from '../../utils/argsToCustomPropertiesAst.js';
+import parseArgs from '../../utils/parseArgs.js';
 /**
  * @name            s-font
  * @namespace       css.declaration
@@ -33,14 +33,14 @@ import __argsToCustomPropertiesAst from '../../utils/argsToCustomPropertiesAst.j
  */
 export default function font(v, settings) {
     const name = v.name.replace(`--s-font-`, '');
-    const args = __parseArgs(v.value, ['family', 'weight', 'style', 'variant'], {
+    const args = parseArgs(v.value, ['family', 'weight', 'style', 'variant'], {
         separator: ['comma', 'white-space'],
         debug: false,
     });
     if (settings.verbose) {
         console.log(`Registered font: <cyan>${name}</cyan>: <yellow>${JSON.stringify(args.values)}</yellow>`);
     }
-    const result = __argsToCustomPropertiesAst(v.name, args);
+    const result = argsToCustomPropertiesAst(v.name, args);
     return result;
 }
 //# sourceMappingURL=font.js.map

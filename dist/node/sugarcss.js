@@ -1,64 +1,59 @@
-import { __parseHtml } from '@blackbyte/sugar/console';
+var _a;
+import { parseHtml } from '@blackbyte/sugar/console';
 import browserslist from 'browserslist';
 import { browserslistToTargets, composeVisitors, } from 'lightningcss';
-import __colorDeclaration from './visitors/declarations/color.js';
-import __containerDeclaration from './visitors/declarations/container.js';
-import __delayDeclaration from './visitors/declarations/delay.js';
-import __easeDeclaration from './visitors/declarations/ease.js';
-import __fontDeclaration from './visitors/declarations/font.js';
-import __fontFamilyDeclaration from './visitors/declarations/fontFamily.js';
-import __gridDeclaration from './visitors/declarations/grid.js';
-import __mediaDeclaration from './visitors/declarations/media.js';
-import __radiusDeclaration from './visitors/declarations/radius.js';
-import __settingDeclaration from './visitors/declarations/setting.js';
-import __shadeDeclaration from './visitors/declarations/shade.js';
-import __sizeDeclaration from './visitors/declarations/size.js';
-import __sizesDeclaration from './visitors/declarations/sizes.js';
-import __spaceDeclaration from './visitors/declarations/space.js';
-import __spacesDeclaration from './visitors/declarations/spaces.js';
-import __transitionDeclaration from './visitors/declarations/transition.js';
-import __typoDeclaration from './visitors/declarations/typo.js';
-import __colorFunction from './visitors/functions/color.js';
-import __containerFunction from './visitors/functions/container.js';
-import __delayFunction from './visitors/functions/delay.js';
-import __easeFunction from './visitors/functions/ease.js';
-import __fontFunction from './visitors/functions/font.js';
-import __fontFamilyFunction from './visitors/functions/fontFamily.js';
-import __radiusFunction from './visitors/functions/radius.js';
-import __remFunction from './visitors/functions/rem.js';
-import __scalableFunction from './visitors/functions/scalable.js';
-import __sizeFunction from './visitors/functions/size.js';
-import __spaceFunction from './visitors/functions/space.js';
-import __transitionFunction from './visitors/functions/transition.js';
-import __weight from './visitors/functions/weight.js';
-import __zindexFunction from './visitors/functions/zindex.js';
-import __containerRule from './visitors/rules/container.js';
-import __fitRule from './visitors/rules/fit.js';
-import __fontRule from './visitors/rules/font.js';
-import __gridRule from './visitors/rules/grid.js';
-import __mapColorRule from './visitors/rules/mapColor.js';
-import __mediaRule from './visitors/rules/media.js';
-import __radiusRule from './visitors/rules/radius.js';
-import __scaleRule from './visitors/rules/scale.js';
-import __scrollbarRule from './visitors/rules/scrollbar.js';
-import __transitionRule from './visitors/rules/transition.js';
-import __typoRule from './visitors/rules/typo.js';
-import __weightRule from './visitors/rules/weight.js';
-import __zindexRule from './visitors/rules/zindex.js';
-export const env = {
-    remFactor: 0.0625,
-    functions: {},
-    rules: {},
-    settings: {
-        verbose: false,
-        mobileFirst: false,
-        scalable: ['padding'],
-        pxToRem: true,
-        opacityZeroValue: 0.0001,
-    },
-    colors: {},
-    shades: {},
-    easingFunctions: {
+import { loadPersistentEnv } from './utils/loadPersistentEnv.js';
+import colorDeclaration from './visitors/declarations/color.js';
+import containerDeclaration from './visitors/declarations/container.js';
+import delayDeclaration from './visitors/declarations/delay.js';
+import easeDeclaration from './visitors/declarations/ease.js';
+import fontDeclaration from './visitors/declarations/font.js';
+import fontFamilyDeclaration from './visitors/declarations/fontFamily.js';
+import gridDeclaration from './visitors/declarations/grid.js';
+import mediaDeclaration from './visitors/declarations/media.js';
+import radiusDeclaration from './visitors/declarations/radius.js';
+import settingDeclaration from './visitors/declarations/setting.js';
+import shadeDeclaration from './visitors/declarations/shade.js';
+import sizeDeclaration from './visitors/declarations/size.js';
+import sizesDeclaration from './visitors/declarations/sizes.js';
+import spaceDeclaration from './visitors/declarations/space.js';
+import spacesDeclaration from './visitors/declarations/spaces.js';
+import transitionDeclaration from './visitors/declarations/transition.js';
+import typoDeclaration from './visitors/declarations/typo.js';
+import colorFunction from './visitors/functions/color.js';
+import containerFunction from './visitors/functions/container.js';
+import delayFunction from './visitors/functions/delay.js';
+import easeFunction from './visitors/functions/ease.js';
+import fontFunction from './visitors/functions/font.js';
+import fontFamilyFunction from './visitors/functions/fontFamily.js';
+import radiusFunction from './visitors/functions/radius.js';
+import remFunction from './visitors/functions/rem.js';
+import scalableFunction from './visitors/functions/scalable.js';
+import sizeFunction from './visitors/functions/size.js';
+import spaceFunction from './visitors/functions/space.js';
+import transitionFunction from './visitors/functions/transition.js';
+import weight from './visitors/functions/weight.js';
+import zindexFunction from './visitors/functions/zindex.js';
+import containerRule from './visitors/rules/container.js';
+import fitRule from './visitors/rules/fit.js';
+import fontRule from './visitors/rules/font.js';
+import gridRule from './visitors/rules/grid.js';
+import mapColorRule from './visitors/rules/mapColor.js';
+import mediaRule from './visitors/rules/media.js';
+import radiusRule from './visitors/rules/radius.js';
+import scaleRule from './visitors/rules/scale.js';
+import scrollbarRule from './visitors/rules/scrollbar.js';
+import transitionRule from './visitors/rules/transition.js';
+import typoRule from './visitors/rules/typo.js';
+import weightRule from './visitors/rules/weight.js';
+import zindexRule from './visitors/rules/zindex.js';
+// read the "envs" saved on disk to avoid issue with
+// some lightningcss integrations that launch a complete
+// new process of this and does not load the `sugarcss.css` file.
+// this is only used to have persistent envs accross multiple
+// executions of sugarcss (like medias and grids)
+const persistentEnv = loadPersistentEnv();
+export const env = Object.assign(Object.assign({ persistentEnvs: ['medias', 'grids', 'settings'], functions: {}, rules: {}, easingFunctions: {
         linear: '1',
         inSin: '1 - cos((t * pi) / 2)',
         outSin: 'sin((t * pi) / 2)',
@@ -73,33 +68,20 @@ export const env = {
         outQuint: '1 - pow(1 - t, 5)',
         inExpo: 'pow(2, 10 * (t - 1))',
         outExpo: '1 - pow(2, -10 * t)',
-    },
-    easings: {},
-    transitions: {},
-    medias: {},
-    grids: {},
-    containers: {},
-    spaces: {
+    }, medias: {}, grids: {}, spaces: {
         easing: 'linear',
         min: 0,
         max: 100,
-    },
-    sizes: {
+    }, sizes: {
         easing: 'linear',
         min: 0,
         max: 100,
-    },
-    radiuses: {},
-    fonts: {
-        family: {},
-        fonts: {},
-    },
-};
+    } }, persistentEnv), { settings: Object.assign({ remFactor: 0.0625, verbose: false, mobileFirst: false, scalable: ['padding'], pxToRem: true, opacityZeroValue: 0.0001 }, ((_a = persistentEnv.settings) !== null && _a !== void 0 ? _a : {})) });
 const nativeConsoleLog = console.log;
 console.log = (...args) => {
     args.forEach((arg) => {
         if (typeof arg === 'string') {
-            arg = __parseHtml(arg);
+            arg = parseHtml(arg);
         }
         nativeConsoleLog(arg);
     });
@@ -124,32 +106,32 @@ export function sugarize(ligningcss, settings) {
 export default function sugarcss(settings = {}) {
     const finalSettings = Object.assign(Object.assign({}, env.settings), settings);
     env.settings = finalSettings;
-    env.functions[`s-color`] = __colorFunction;
-    env.functions[`s-font-family`] = __fontFamilyFunction;
-    env.functions[`s-scalable`] = __scalableFunction;
-    env.functions[`s-size`] = __sizeFunction;
-    env.functions[`s-space`] = __spaceFunction;
-    env.functions[`s-font`] = __fontFunction;
-    env.functions[`s-transition`] = __transitionFunction;
-    env.functions[`s-radius`] = __radiusFunction;
-    env.functions['s-container'] = __containerFunction;
-    env.functions['s-ease'] = __easeFunction;
-    env.functions['s-rem'] = __remFunction;
-    env.functions['s-zindex'] = __zindexFunction;
-    env.functions['s-weight'] = __weight;
-    env.functions['s-delay'] = __delayFunction;
-    env.rules['s-scrollbar'] = __scrollbarRule;
-    env.rules['s-transition'] = __transitionRule;
-    env.rules['s-radius'] = __radiusRule;
-    env.rules['s-font'] = __fontRule;
-    env.rules['s-typo'] = __typoRule;
-    env.rules['s-fit'] = __fitRule;
-    env.rules['s-map-color'] = __mapColorRule;
-    env.rules['s-container'] = __containerRule;
-    env.rules['s-grid'] = __gridRule;
-    env.rules['s-scale'] = __scaleRule;
-    env.rules['s-zindex'] = __zindexRule;
-    env.rules['s-weight'] = __weightRule;
+    env.functions[`s-color`] = colorFunction;
+    env.functions[`s-font-family`] = fontFamilyFunction;
+    env.functions[`s-scalable`] = scalableFunction;
+    env.functions[`s-size`] = sizeFunction;
+    env.functions[`s-space`] = spaceFunction;
+    env.functions[`s-font`] = fontFunction;
+    env.functions[`s-transition`] = transitionFunction;
+    env.functions[`s-radius`] = radiusFunction;
+    env.functions['s-container'] = containerFunction;
+    env.functions['s-ease'] = easeFunction;
+    env.functions['s-rem'] = remFunction;
+    env.functions['s-zindex'] = zindexFunction;
+    env.functions['s-weight'] = weight;
+    env.functions['s-delay'] = delayFunction;
+    env.rules['s-scrollbar'] = scrollbarRule;
+    env.rules['s-transition'] = transitionRule;
+    env.rules['s-radius'] = radiusRule;
+    env.rules['s-font'] = fontRule;
+    env.rules['s-typo'] = typoRule;
+    env.rules['s-fit'] = fitRule;
+    env.rules['s-map-color'] = mapColorRule;
+    env.rules['s-container'] = containerRule;
+    env.rules['s-grid'] = gridRule;
+    env.rules['s-scale'] = scaleRule;
+    env.rules['s-zindex'] = zindexRule;
+    env.rules['s-weight'] = weightRule;
     let mixins = new Map();
     const visitors = {
         Length(length) {
@@ -157,53 +139,53 @@ export default function sugarcss(settings = {}) {
             if (env.settings.pxToRem && length.unit === 'px') {
                 return {
                     unit: 'rem',
-                    value: length.value * 0.0625,
+                    value: length.value * env.settings.remFactor,
                 };
             }
             return length;
         },
         Function: {
             [`s-color`](v) {
-                return __colorFunction(v, finalSettings);
+                return colorFunction(v, finalSettings);
             },
             [`s-scalable`](v) {
-                return __scalableFunction(v, finalSettings);
+                return scalableFunction(v, finalSettings);
             },
             [`s-space`](v) {
-                return __spaceFunction(v, finalSettings);
+                return spaceFunction(v, finalSettings);
             },
             [`s-size`](v) {
-                return __sizeFunction(v, finalSettings);
+                return sizeFunction(v, finalSettings);
             },
             [`s-font-family`](v) {
-                return __fontFamilyFunction(v, finalSettings);
+                return fontFamilyFunction(v, finalSettings);
             },
             [`s-font`](v) {
-                return __fontFunction(v, finalSettings);
+                return fontFunction(v, finalSettings);
             },
             [`s-transition`](v) {
-                return __transitionFunction(v, finalSettings);
+                return transitionFunction(v, finalSettings);
             },
             [`s-radius`](v) {
-                return __radiusFunction(v, finalSettings);
+                return radiusFunction(v, finalSettings);
             },
             ['s-container'](v) {
-                return __containerFunction(v, finalSettings);
+                return containerFunction(v, finalSettings);
             },
             ['s-ease'](v) {
-                return __easeFunction(v, finalSettings);
+                return easeFunction(v, finalSettings);
             },
             ['s-rem'](v) {
-                return __remFunction(v, finalSettings);
+                return remFunction(v, finalSettings);
             },
             ['s-zindex'](v) {
-                return __zindexFunction(v, finalSettings);
+                return zindexFunction(v, finalSettings);
             },
             ['s-weight'](v) {
-                return __weight(v, finalSettings);
+                return weight(v, finalSettings);
             },
             ['s-delay'](v) {
-                return __delayFunction(v, finalSettings);
+                return delayFunction(v, finalSettings);
             },
         },
         Declaration: {
@@ -220,40 +202,40 @@ export default function sugarcss(settings = {}) {
                 switch (true) {
                     case v.name.startsWith(`--s-color-`) &&
                         v.name.match(/\-(h|s|l|a|o)$/) === null:
-                        return __colorDeclaration(v, finalSettings);
+                        return colorDeclaration(v, finalSettings);
                     case v.name.startsWith(`--s-shade-`):
-                        return __shadeDeclaration(v, finalSettings);
+                        return shadeDeclaration(v, finalSettings);
                     case v.name.startsWith(`--s-media-`):
-                        return __mediaDeclaration(v, finalSettings);
+                        return mediaDeclaration(v, finalSettings);
                     case v.name.startsWith(`--s-ease-`):
-                        return __easeDeclaration(v, finalSettings);
+                        return easeDeclaration(v, finalSettings);
                     case v.name.startsWith(`--s-space-`):
-                        return __spaceDeclaration(v, finalSettings);
+                        return spaceDeclaration(v, finalSettings);
                     case v.name === '--s-spaces':
-                        return __spacesDeclaration(v, finalSettings);
+                        return spacesDeclaration(v, finalSettings);
                     case v.name.startsWith('--s-size-'):
-                        return __sizeDeclaration(v, finalSettings);
+                        return sizeDeclaration(v, finalSettings);
                     case v.name === '--s-sizes':
-                        return __sizesDeclaration(v, finalSettings);
+                        return sizesDeclaration(v, finalSettings);
                     case v.name.startsWith(`--s-setting-`):
-                        return __settingDeclaration(v, finalSettings);
+                        return settingDeclaration(v, finalSettings);
                     case v.name.startsWith(`--s-typo-`):
-                        return __typoDeclaration(v, finalSettings);
+                        return typoDeclaration(v, finalSettings);
                     case v.name.startsWith(`--s-font-`) &&
                         !v.name.startsWith(`--s-font-family-`):
-                        return __fontDeclaration(v, finalSettings);
+                        return fontDeclaration(v, finalSettings);
                     case v.name.startsWith(`--s-font-family-`):
-                        return __fontFamilyDeclaration(v, finalSettings);
+                        return fontFamilyDeclaration(v, finalSettings);
                     case v.name.startsWith(`--s-transition-`):
-                        return __transitionDeclaration(v, finalSettings);
+                        return transitionDeclaration(v, finalSettings);
                     case v.name.startsWith(`--s-radius-`):
-                        return __radiusDeclaration(v, finalSettings);
+                        return radiusDeclaration(v, finalSettings);
                     case v.name.startsWith(`--s-container-`):
-                        return __containerDeclaration(v, finalSettings);
+                        return containerDeclaration(v, finalSettings);
                     case v.name.startsWith(`--s-grid-`):
-                        return __gridDeclaration(v, finalSettings);
+                        return gridDeclaration(v, finalSettings);
                     case v.name.startsWith(`--s-delay-`):
-                        return __delayDeclaration(v, finalSettings);
+                        return delayDeclaration(v, finalSettings);
                 }
             },
         },
@@ -262,29 +244,29 @@ export default function sugarcss(settings = {}) {
                 try {
                     switch (true) {
                         case rule.name === `s-scrollbar`:
-                            return __scrollbarRule(rule, finalSettings);
+                            return scrollbarRule(rule, finalSettings);
                         case rule.name === `s-transition`:
-                            return __transitionRule(rule, finalSettings);
+                            return transitionRule(rule, finalSettings);
                         case rule.name === `s-radius`:
-                            return __radiusRule(rule, finalSettings);
+                            return radiusRule(rule, finalSettings);
                         case rule.name === `s-typo`:
-                            return __typoRule(rule, finalSettings);
+                            return typoRule(rule, finalSettings);
                         case rule.name === `s-font`:
-                            return __fontRule(rule, finalSettings);
+                            return fontRule(rule, finalSettings);
                         case rule.name === `s-fit`:
-                            return __fitRule(rule, finalSettings);
+                            return fitRule(rule, finalSettings);
                         case rule.name === `s-container`:
-                            return __containerRule(rule, finalSettings);
+                            return containerRule(rule, finalSettings);
                         case rule.name === 's-map-color':
-                            return __mapColorRule(rule, finalSettings);
+                            return mapColorRule(rule, finalSettings);
                         case rule.name === `s-grid`:
-                            return __gridRule(rule, finalSettings);
+                            return gridRule(rule, finalSettings);
                         case rule.name === 's-scale':
-                            return __scaleRule(rule, finalSettings);
+                            return scaleRule(rule, finalSettings);
                         case rule.name === 's-zindex':
-                            return __zindexRule(rule, finalSettings);
+                            return zindexRule(rule, finalSettings);
                         case rule.name === 's-weight':
-                            return __weightRule(rule, finalSettings);
+                            return weightRule(rule, finalSettings);
                     }
                 }
                 catch (e) {
@@ -293,7 +275,7 @@ export default function sugarcss(settings = {}) {
             },
             custom: {
                 's-transition'(rule) {
-                    return __transitionRule(rule, finalSettings);
+                    return transitionRule(rule, finalSettings);
                 },
                 mixin(rule) {
                     if (rule.prelude.value === 'log') {
@@ -322,7 +304,7 @@ export default function sugarcss(settings = {}) {
                 },
             },
             media(rule) {
-                return __mediaRule(rule, finalSettings);
+                return mediaRule(rule, finalSettings);
             },
         },
     };

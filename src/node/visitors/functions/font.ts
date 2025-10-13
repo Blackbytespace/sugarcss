@@ -1,5 +1,5 @@
 import { TSugarCssSettings } from '../../sugarcss.types.js';
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 
 /**
  * @name            s-font
@@ -34,7 +34,7 @@ import __parseArgs from '../../utils/parseArgs.js';
  * @author          Olivier Bossel <olivier.bossel@gmail.com> (https://hello@blackbyte.space)
  */
 export default function font(value: any, settings: TSugarCssSettings): any {
-  const args = __parseArgs(value.arguments, ['name']);
+  const args = parseArgs(value.arguments, ['name']);
 
   const props: (string | number)[] = [];
 

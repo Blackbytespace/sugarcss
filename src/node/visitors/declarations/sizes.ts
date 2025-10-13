@@ -1,8 +1,6 @@
-import { __camelCase } from '@blackbyte/sugar/string';
+import { camelCase } from '@blackbyte/sugar/string';
 import { TSugarCssSettings } from '../../sugarcss.types.js';
-import __parseArgs from '../../utils/parseArgs.js';
-
-import __toRem from '../../utils/toRem.js';
+import parseArgs from '../../utils/parseArgs.js';
 
 /**
  * @name            s-sizes
@@ -34,7 +32,7 @@ import __toRem from '../../utils/toRem.js';
  */
 
 export default function sizes(v, settings: TSugarCssSettings): any {
-  const args = __parseArgs(v.value, ['min', 'max', 'easing'], {
+  const args = parseArgs(v.value, ['min', 'max', 'easing'], {
     separator: ['white-space', 'comma'],
   });
 
@@ -42,12 +40,12 @@ export default function sizes(v, settings: TSugarCssSettings): any {
 
   let value = args.values;
   if (value.easing) {
-    value.easing = __camelCase(value.easing);
+    value.easing = camelCase(value.easing);
   }
 
   // custom css variables
   for (let [key, value] of Object.entries(args.ast)) {
-    const finalValue = __toRem(value);
+    const finalValue = value;
 
     result.push({
       property: `--s-sizes-${key}`,

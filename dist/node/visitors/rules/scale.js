@@ -1,4 +1,4 @@
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 /**
  * @name            s-scale
  * @namespace       css.rule
@@ -31,7 +31,7 @@ import __parseArgs from '../../utils/parseArgs.js';
  */
 export default function scale(v, settings) {
     // parse args
-    const args = Object.assign({}, __parseArgs(v.prelude, ['ratio']));
+    const args = Object.assign({}, parseArgs(v.prelude, ['ratio']));
     args.values = Object.assign({ ratio: 1 }, args.values);
     const ast = [
         {

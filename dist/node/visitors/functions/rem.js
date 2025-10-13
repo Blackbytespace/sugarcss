@@ -1,5 +1,4 @@
-import __parseArgs from '../../utils/parseArgs.js';
-import __toRem from '../../utils/toRem.js';
+import parseArgs from '../../utils/parseArgs.js';
 /**
  * @name            s-rem
  * @namespace       css.function
@@ -23,10 +22,10 @@ import __toRem from '../../utils/toRem.js';
  * @author          Olivier Bossel <olivier.bossel@gmail.com> (https://hello@blackbyte.space)
  */
 export default function rem(value, settings) {
-    const args = Object.assign({}, __parseArgs(value.arguments, [], {}));
+    const args = Object.assign({}, parseArgs(value.arguments, [], {}));
     const finalValue = [];
     for (let [key, value] of Object.entries(args.ast)) {
-        finalValue.push(__toRem(value));
+        finalValue.push(value);
     }
     return finalValue;
 }

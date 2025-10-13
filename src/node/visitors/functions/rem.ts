@@ -1,6 +1,5 @@
 import { TSugarCssSettings } from '../../sugarcss.types.js';
-import __parseArgs from '../../utils/parseArgs.js';
-import __toRem from '../../utils/toRem.js';
+import parseArgs from '../../utils/parseArgs.js';
 
 /**
  * @name            s-rem
@@ -26,12 +25,12 @@ import __toRem from '../../utils/toRem.js';
  */
 export default function rem(value: any, settings: TSugarCssSettings): any {
   const args = {
-    ...__parseArgs(value.arguments, [], {}),
+    ...parseArgs(value.arguments, [], {}),
   };
 
   const finalValue: any[] = [];
   for (let [key, value] of Object.entries(args.ast)) {
-    finalValue.push(__toRem(value));
+    finalValue.push(value);
   }
   return finalValue;
 }

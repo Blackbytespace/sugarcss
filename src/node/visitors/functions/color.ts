@@ -1,5 +1,5 @@
 import { TSugarCssSettings } from '../../sugarcss.types.js';
-import __parseArgs from '../../utils/parseArgs.js';
+import parseArgs from '../../utils/parseArgs.js';
 
 /**
  * @name            s-color
@@ -44,7 +44,7 @@ import __parseArgs from '../../utils/parseArgs.js';
  * @author          Olivier Bossel <olivier.bossel@gmail.com> (https://hello@blackbyte.space)
  */
 export default function color(value: any, settings: TSugarCssSettings): any {
-  const args = __parseArgs(value.arguments, ['color', 'shade', 'modifiers']),
+  const args = parseArgs(value.arguments, ['color', 'shade', 'modifiers']),
     availableModifiers = [
       'lightness',
       'lighten',
@@ -93,13 +93,13 @@ export default function color(value: any, settings: TSugarCssSettings): any {
       sModifiers = modifiers.saturate
         ? `calc(${sSpecial} + ${modifiers.saturate})`
         : modifiers.desaturate
-        ? `calc(${sSpecial} - ${modifiers.desaturate})`
-        : sSpecial,
+          ? `calc(${sSpecial} - ${modifiers.desaturate})`
+          : sSpecial,
       lModifiers = modifiers.lighten
         ? `calc(${lSpecial} + ${modifiers.lighten})`
         : modifiers.darken
-        ? `calc(${lSpecial} - ${modifiers.darken})`
-        : lSpecial;
+          ? `calc(${lSpecial} - ${modifiers.darken})`
+          : lSpecial;
 
     const h = `var(--s-shade-${shade}-${color}-hue, var(--s-shade-${shade}-hue, calc(var(--s-color-${color}-h) + ${hModifiers})))`,
       s = modifiers.saturation

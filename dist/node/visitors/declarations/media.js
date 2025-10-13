@@ -1,6 +1,6 @@
 import { env } from '../../sugarcss.js';
-import __parseArgs from '../../utils/parseArgs.js';
-import __toRem from '../../utils/toRem.js';
+import parseArgs from '../../utils/parseArgs.js';
+import { savePersistentEnv } from '../../utils/savePersistentEnv.js';
 /**
  * @name            s-media
  * @namespace       css.declaration
@@ -39,7 +39,7 @@ import __toRem from '../../utils/toRem.js';
  */
 export default function media(v, settings) {
     var _a, _b;
-    const media = v.name.replace(`--s-media-`, ''), args = __parseArgs(v.value, ['min', 'max'], {
+    const media = v.name.replace(`--s-media-`, ''), args = parseArgs(v.value, ['min', 'max'], {
         separator: ['white-space', 'comma'],
     });
     const result = [];
@@ -54,7 +54,7 @@ export default function media(v, settings) {
             property: `--s-media-${media}-min`,
             value: {
                 name: `--s-media-${media}-min`,
-                value: [__toRem(args.ast.min)],
+                value: [args.ast.min],
             },
         });
     }
@@ -63,13 +63,15 @@ export default function media(v, settings) {
             property: `--s-media-${media}-max`,
             value: {
                 name: `--s-media-${media}-max`,
-                value: [__toRem(args.ast.max)],
+                value: [args.ast.max],
             },
         });
     }
     if (settings.verbose) {
         console.log(`Registered media: <cyan>${media}</cyan>: <yellow>${JSON.stringify(env.medias[media])}</yellow>`);
     }
+    // save persistent env
+    savePersistentEnv();
     return result;
 }
 //# sourceMappingURL=media.js.map
