@@ -10,7 +10,9 @@ import { TSugarCssEnv } from '../sugarcss.types.js';
 // executions of sugarcss (like medias and grids)
 
 export function loadPersistentEnv(): Partial<TSugarCssEnv> {
-  const sugarCssPersistentDir = `${nodeModulesDir()}/.sugarcss`;
+  const sugarCssPersistentDir = `${nodeModulesDir({
+    checkExistence: false,
+  })}/.sugarcss`;
   const envPersistentFilePath = `${sugarCssPersistentDir}/env.json`;
   ensureDirSync(sugarCssPersistentDir);
   if (fs.existsSync(envPersistentFilePath)) {

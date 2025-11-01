@@ -7,7 +7,9 @@ import fs from 'fs';
 // this is only used to have persistent envs accross multiple
 // executions of sugarcss (like medias and grids)
 export function loadPersistentEnv() {
-    const sugarCssPersistentDir = `${nodeModulesDir()}/.sugarcss`;
+    const sugarCssPersistentDir = `${nodeModulesDir({
+        checkExistence: false,
+    })}/.sugarcss`;
     const envPersistentFilePath = `${sugarCssPersistentDir}/env.json`;
     ensureDirSync(sugarCssPersistentDir);
     if (fs.existsSync(envPersistentFilePath)) {

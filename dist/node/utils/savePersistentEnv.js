@@ -5,7 +5,9 @@ import { env } from '../sugarcss.js';
 let saveTimeout = null;
 export function savePersistentEnv() {
     clearTimeout(saveTimeout);
-    const sugarCssPersistentDir = `${nodeModulesDir()}/.sugarcss`;
+    const sugarCssPersistentDir = `${nodeModulesDir({
+        checkExistence: false,
+    })}/.sugarcss`;
     const envPersistentFilePath = `${sugarCssPersistentDir}/env.json`;
     ensureDirSync(sugarCssPersistentDir);
     saveTimeout = setTimeout(() => {
