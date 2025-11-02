@@ -15,7 +15,7 @@
     "dev": "tsc --watch",
     "clean": "rm -rf src/**/*.js src/**/*.d.ts src/**/*.map",
     "build": "tsc",
-    "doc.build": "blackbyte docmap.build --mdx --outPath ../website-sugarcss/docmap.json --outDir ../website-sugarcss/src/content/sugarcss",
+    "doc.build": "blackbyte docmap.build --mdx --outPath ./docmap.json,../website-sugarcss/docmap.json --outDir ../website-sugarcss/src/content/sugarcss",
     "test": "vitest",
     "publish": "npm publish --access public --tag beta"
   },
