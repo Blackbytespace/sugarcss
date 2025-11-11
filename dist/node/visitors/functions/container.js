@@ -13,7 +13,7 @@ import parseArgs from '../../utils/parseArgs.js';
  * - `maxWidth` (`max-width`): The max width of the container
  * - `sidePadding` (`side-padding`): The side padding of the container
  *
- * @param      {String}        prop         The container property wanted
+ * @param      {'minWidth'|'maxWidth'|'sidePadding'|'width'}        prop         The container property wanted
  * @return     {Css}                        The generated css
  *
  * @example         css

@@ -24,10 +24,10 @@ import parseArgs from '../../utils/parseArgs.js';
  *
  * The shades are registered like so: --s-shade-placeholder: --darken 10;
  *
- * @param      {String}        color                The color name you want to apply like "main", "accent", etc...
- * @param      {String}        shadeOrModifiers      The shade name you want to apply like "text", "placeholder", etc... or a string of modifiers like --lighten 10 --saturate 20
- * @param      {String}        modifiers             A string of modifiers like --lighten 10 --saturate 20, etc...
- * @return     {Css}                                The generated css
+ * @param      {String}        color                        The color name you want to apply like "main", "accent", etc...
+ * @param      {String}        [shadeOrModifiers=null]      The shade name you want to apply like "text", "placeholder", etc... or a string of modifiers like --lighten 10 --saturate 20
+ * @param      {String}        [modifiers=null]             A string of modifiers like --lighten 10 --saturate 20, etc...
+ * @return     {Css}                                        The generated css
  *
  * @example         css
  * :root {
