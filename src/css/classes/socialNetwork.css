@@ -1,0 +1,62 @@
+/**
+ * @name            .s-color-%socialNetwork
+ * @namespace       css.classes.socialNetwork
+ * @type            CSSClass
+ * @platform        css
+ * @status          stable
+ *
+ * These helpers allows you to easily set the color of an element to a social network color.
+ * Here's the list of available social networks:
+ * - discord
+ * - facebook
+ * - linkedin
+ * - instagram
+ * - snapchat
+ * - telegram
+ * - tiktok
+ * - twitch
+ * - whatsapp
+ * - x
+ * - youtube
+ *
+ * @example         html
+ * <span class="s-color-discord">Discord colored text</span>
+ * <span class="s-color-facebook">Facebook colored text</span>
+ * <span class="s-color-linkedin">LinkedIn colored text</span>
+ *
+ * @since           0.0.1
+ * @author          Olivier Bossel <olivier.bossel@gmail.com> (https://hello@blackbyte.space)
+ */
+.s-color-discord {
+  color: s-color(discord);
+}
+.s-color-facebook {
+  color: s-color(facebook);
+}
+.s-color-linkedin {
+  color: s-color(linkedin);
+}
+.s-color-instagram {
+  color: s-color(instagram);
+}
+.s-color-snapchat {
+  color: s-color(snapchat);
+}
+.s-color-telegram {
+  color: s-color(telegram);
+}
+.s-color-tiktok {
+  color: s-color(tiktok);
+}
+.s-color-twitch {
+  color: s-color(twitch);
+}
+.s-color-whatsapp {
+  color: s-color(whatsapp);
+}
+.s-color-x {
+  color: s-color(x);
+}
+.s-color-youtube {
+  color: s-color(youtube);
+}

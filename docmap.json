@@ -1708,10 +1708,23 @@
                         "type": {
                             "types": [
                                 {
-                                    "type": "String"
+                                    "type": "string",
+                                    "value": "minWidth"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "maxWidth"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "sidePadding"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "width"
                                 }
                             ],
-                            "raw": "String"
+                            "raw": "'minWidth'|'maxWidth'|'sidePadding'|'width'"
                         },
                         "description": "The container property wanted",
                         "defaultStr": ""
@@ -1790,7 +1803,8 @@
                             "raw": "String"
                         },
                         "description": "The shade name you want to apply like \"text\", \"placeholder\", etc... or a string of modifiers like --lighten 10 --saturate 20",
-                        "defaultStr": ""
+                        "default": null,
+                        "defaultStr": "null"
                     },
                     "modifiers": {
                         "name": "modifiers",
@@ -1803,7 +1817,8 @@
                             "raw": "String"
                         },
                         "description": "A string of modifiers like --lighten 10 --saturate 20, etc...",
-                        "defaultStr": ""
+                        "default": null,
+                        "defaultStr": "null"
                     }
                 },
                 "return": {
@@ -3219,6 +3234,43 @@
                 "filename": "burgerMenu.css",
                 "extension": "css",
                 "relPath": "src/css/mixins/burgerMenu.css",
+                "children": {}
+            },
+            "@blackbyte.sugarcss.css.classes.socialNetwork.s-color-socialNetwork": {
+                "id": "@blackbyte.sugarcss.css.classes.socialNetwork.s-color-socialNetwork",
+                "name": ".s-color-%socialNetwork",
+                "type": {
+                    "types": [
+                        {
+                            "type": "CSSClass"
+                        }
+                    ],
+                    "raw": "CSSClass"
+                },
+                "platform": [
+                    {
+                        "name": "css",
+                        "description": ""
+                    }
+                ],
+                "description": "These helpers allows you to easily set the color of an element to a social network color.\nHere&#39;s the list of available social networks:\n- discord\n- facebook\n- linkedin\n- instagram\n- snapchat\n- telegram\n- tiktok\n- twitch\n- whatsapp\n- x\n- youtube",
+                "namespace": "@blackbyte.sugarcss.css.classes.socialNetwork",
+                "status": "stable",
+                "example": [
+                    {
+                        "language": "html",
+                        "code": "<span class=\"s-color-discord\">Discord colored text</span>\n<span class=\"s-color-facebook\">Facebook colored text</span>\n<span class=\"s-color-linkedin\">LinkedIn colored text</span>"
+                    }
+                ],
+                "since": "0.0.1",
+                "author": {
+                    "name": "Olivier Bossel",
+                    "email": "olivier.bossel@gmail.com",
+                    "url": "https://hello@blackbyte.space"
+                },
+                "filename": "socialNetwork.css",
+                "extension": "css",
+                "relPath": "src/css/classes/socialNetwork.css",
                 "children": {}
             }
         }

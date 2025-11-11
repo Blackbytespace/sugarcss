@@ -1,1 +1,8 @@
+/* Mixins */
 @import './mixins/_imports.css';
+
+/* Settings */
+@import './settings/_imports.css';
+
+/* Classes */
+@import './classes/_imports.css';
