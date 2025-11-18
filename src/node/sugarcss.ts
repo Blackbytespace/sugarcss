@@ -47,6 +47,7 @@ import mediaRule from './visitors/rules/media.js';
 import radiusRule from './visitors/rules/radius.js';
 import scaleRule from './visitors/rules/scale.js';
 import scrollbarRule from './visitors/rules/scrollbar.js';
+import tooltipRule from './visitors/rules/tooltip.js';
 import transitionRule from './visitors/rules/transition.js';
 import typoRule from './visitors/rules/typo.js';
 import weightRule from './visitors/rules/weight.js';
@@ -174,6 +175,7 @@ export default function sugarcss(
   env.rules['s-scale'] = scaleRule;
   env.rules['s-zindex'] = zindexRule;
   env.rules['s-weight'] = weightRule;
+  env.rules['s-tooltip'] = tooltipRule;
 
   let mixins = new Map();
 
@@ -311,6 +313,8 @@ export default function sugarcss(
               return zindexRule(rule, finalSettings);
             case rule.name === 's-weight':
               return weightRule(rule, finalSettings);
+            case rule.name === 's-tooltip':
+              return tooltipRule(rule, finalSettings);
           }
         } catch (e) {
           console.error(e);
