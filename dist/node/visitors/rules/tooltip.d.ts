@@ -18,8 +18,11 @@ import { TSugarCssSettings } from '../../sugarcss.types.js';
  *
  * @example         css
  * .my-tooltip {
- *     @s-tooltip(20px, blue);
- *     @s-tooltip(10px, s-color(accent));
+ *   @s-tooltip(20px, 5px, blue);
+ *   @s-tooltip(10px, 15px, s-color(accent));
+ *
+ *   padding: 5px 10px;
+ *   border-radius: 5px;
  * }
  *
  * @since           0.0.1

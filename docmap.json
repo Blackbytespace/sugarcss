@@ -274,6 +274,101 @@
                 "relPath": "src/node/visitors/rules/transition.ts",
                 "children": {}
             },
+            "@blackbyte.sugarcss.css.rule.s-tooltip": {
+                "id": "@blackbyte.sugarcss.css.rule.s-tooltip",
+                "name": "s-tooltip",
+                "type": {
+                    "types": [
+                        {
+                            "type": "AtRule"
+                        }
+                    ],
+                    "raw": "AtRule"
+                },
+                "param": {
+                    "size": {
+                        "name": "size",
+                        "type": {
+                            "types": [
+                                {
+                                    "type": "Number"
+                                }
+                            ],
+                            "raw": "Number"
+                        },
+                        "description": "The size of the tooltip arrow",
+                        "default": 10,
+                        "defaultStr": "10"
+                    },
+                    "offset": {
+                        "name": "offset",
+                        "type": {
+                            "types": [
+                                {
+                                    "type": "Number"
+                                }
+                            ],
+                            "raw": "Number"
+                        },
+                        "description": "The offset of the tooltip from its target",
+                        "default": 0,
+                        "defaultStr": "0"
+                    },
+                    "color": {
+                        "name": "color",
+                        "type": {
+                            "types": [
+                                {
+                                    "type": "String}."
+                                }
+                            ],
+                            "raw": "String}."
+                        },
+                        "description": "The color of the tooltip arrow",
+                        "default": "current",
+                        "defaultStr": "current"
+                    }
+                },
+                "return": {
+                    "type": {
+                        "types": [
+                            {
+                                "type": "Css"
+                            }
+                        ],
+                        "raw": "Css"
+                    },
+                    "description": "The generated css"
+                },
+                "platform": [
+                    {
+                        "name": "css",
+                        "description": ""
+                    }
+                ],
+                "description": "This rule allows you to make the element a tooltip easily.",
+                "namespace": "@blackbyte.sugarcss.css.rule",
+                "status": "stable",
+                "snippet": {
+                    "label": "@s-tooltip($1, $2, $3);"
+                },
+                "example": [
+                    {
+                        "language": "css",
+                        "code": ".my-tooltip {\n  @s-tooltip(20px, 5px, blue);\n  @s-tooltip(10px, 15px, s-color(accent));\n\n  padding: 5px 10px;\n  border-radius: 5px;\n}"
+                    }
+                ],
+                "since": "0.0.1",
+                "author": {
+                    "name": "Olivier Bossel",
+                    "email": "olivier.bossel@gmail.com",
+                    "url": "https://hello@blackbyte.space"
+                },
+                "filename": "tooltip.ts",
+                "extension": "ts",
+                "relPath": "src/node/visitors/rules/tooltip.ts",
+                "children": {}
+            },
             "@blackbyte.sugarcss.css.rule.s-scrollbar": {
                 "id": "@blackbyte.sugarcss.css.rule.s-scrollbar",
                 "name": "s-scrollbar",

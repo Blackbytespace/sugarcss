@@ -20,8 +20,11 @@ import parseArgs from '../../utils/parseArgs.js';
  *
  * @example         css
  * .my-tooltip {
- *     @s-tooltip(20px, blue);
- *     @s-tooltip(10px, s-color(accent));
+ *   @s-tooltip(20px, 5px, blue);
+ *   @s-tooltip(10px, 15px, s-color(accent));
+ *
+ *   padding: 5px 10px;
+ *   border-radius: 5px;
  * }
  *
  * @since           0.0.1
@@ -59,7 +62,7 @@ export default function tooltip(v: any, settings: TSugarCssSettings): any {
               value: {
                 name: '--s-tooltip-arrow-size',
                 value: [
-                  {
+                  args.ast.size ?? {
                     type: 'length',
                     value: {
                       unit: 'px',
@@ -74,7 +77,7 @@ export default function tooltip(v: any, settings: TSugarCssSettings): any {
               value: {
                 name: '--s-tooltip-offset',
                 value: [
-                  {
+                  args.ast.offset ?? {
                     type: 'length',
                     value: {
                       unit: 'px',
@@ -89,7 +92,7 @@ export default function tooltip(v: any, settings: TSugarCssSettings): any {
               value: {
                 name: '--s-tooltip-background',
                 value: [
-                  {
+                  args.ast.color ?? {
                     type: 'function',
                     value: {
                       name: 's-color',

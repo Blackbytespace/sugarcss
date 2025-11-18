@@ -18,14 +18,18 @@ import parseArgs from '../../utils/parseArgs.js';
  *
  * @example         css
  * .my-tooltip {
- *     @s-tooltip(20px, blue);
- *     @s-tooltip(10px, s-color(accent));
+ *   @s-tooltip(20px, 5px, blue);
+ *   @s-tooltip(10px, 15px, s-color(accent));
+ *
+ *   padding: 5px 10px;
+ *   border-radius: 5px;
  * }
  *
  * @since           0.0.1
  * @author          Olivier Bossel <olivier.bossel@gmail.com> (https://hello@blackbyte.space)
  */
 export default function tooltip(v, settings) {
+    var _a, _b, _c;
     // parse args
     const args = Object.assign({}, parseArgs(v.prelude, ['size', 'offset', 'color']));
     args.values = Object.assign({ size: 10, color: 'current', offset: 0 }, args.values);
@@ -48,7 +52,7 @@ export default function tooltip(v, settings) {
                             value: {
                                 name: '--s-tooltip-arrow-size',
                                 value: [
-                                    {
+                                    (_a = args.ast.size) !== null && _a !== void 0 ? _a : {
                                         type: 'length',
                                         value: {
                                             unit: 'px',
@@ -63,7 +67,7 @@ export default function tooltip(v, settings) {
                             value: {
                                 name: '--s-tooltip-offset',
                                 value: [
-                                    {
+                                    (_b = args.ast.offset) !== null && _b !== void 0 ? _b : {
                                         type: 'length',
                                         value: {
                                             unit: 'px',
@@ -78,7 +82,7 @@ export default function tooltip(v, settings) {
                             value: {
                                 name: '--s-tooltip-background',
                                 value: [
-                                    {
+                                    (_c = args.ast.color) !== null && _c !== void 0 ? _c : {
                                         type: 'function',
                                         value: {
                                             name: 's-color',
