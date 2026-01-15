@@ -1,4 +1,6 @@
+import { camelCaseProps } from '@blackbyte/sugar/object';
 import parseArgs from '../../utils/parseArgs.js';
+import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 /**
  * @name            s-transition
  * @namespace       css.declaration
@@ -45,6 +47,12 @@ export default function transition(v, settings) {
             },
         });
     }
+    // save to sugarcss.json
+    setSugarcssJson({
+        transitions: {
+            [name]: camelCaseProps(args.values),
+        },
+    });
     if (settings.verbose) {
         console.log(`Registered transition: <cyan>${name}</cyan>: <yellow>${JSON.stringify(args.values)}</yellow>`);
     }

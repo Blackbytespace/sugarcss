@@ -1,6 +1,7 @@
 import { dashCase } from '@blackbyte/sugar/string';
 import { TSugarCssSettings } from '../../sugarcss.types.js';
 import parseArgs from '../../utils/parseArgs.js';
+import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 
 /**
  * @name            s-container
@@ -42,6 +43,13 @@ export default function container(v, settings: TSugarCssSettings): any {
       )}</yellow>`,
     );
   }
+
+  // save to sugarcss.json
+  setSugarcssJson({
+    containers: {
+      [name]: args.values,
+    },
+  });
 
   const result: any[] = [];
 

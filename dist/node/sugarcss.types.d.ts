@@ -6,6 +6,43 @@ export type TSugarCssRadius = {
     bottomLeft: number;
     ast: any;
 };
+export type TSugarColorRgba = {
+    r: number;
+    g: number;
+    b: number;
+    a: number;
+    string: string;
+};
+export type TSugarColorHsla = {
+    h: number;
+    s: number;
+    l: number;
+    a: number;
+    string: string;
+};
+export type TSugarCssColor = {
+    hex: string;
+    rgba: TSugarColorRgba;
+    hsla: TSugarColorHsla;
+    shades?: Record<string, any>;
+};
+export type TSugarCssJson = {
+    colors: Record<string, TSugarCssColor>;
+    containers: Record<string, TSugarCssContainer>;
+    delays: Record<string, number>;
+    easingFunctions: Record<string, string>;
+    fonts: Record<string, TSugarCssTypo>;
+    fontFamilies: Record<string, string[]>;
+    grids: Record<string, TSugarCssGrid>;
+    medias: Record<string, TSugarCssMedia>;
+    radius: Record<string, TSugarCssRadius>;
+    settings: TSugarCssEnv['settings'];
+    shades: Record<string, TSugarCssShade>;
+    sizes: Record<string, number | string>;
+    spaces: Record<string, number | string>;
+    transitions: Record<string, TSugarCssTransition>;
+    typos: Record<string, TSugarCssTypo>;
+};
 export type TSugarCssEnv = {
     persistentEnvs: string[];
     functions: Record<string, Function>;
@@ -20,7 +57,7 @@ export type TSugarCssEnv = {
 export type TSugarCssGrid = {
     layout: string;
     gap: number;
-    ast: any;
+    ast?: any;
 };
 export type TSugarCssTransition = {
     property: string;
@@ -35,14 +72,13 @@ export type TSugarCssContainer = {
     maxWIdth: number;
     sidePadding: number;
 };
-export type TSugarCssFontsFont = {
-    family: string;
+export type TSugarCssTypo = {
+    font: string;
     size: number;
     lineHeight: number;
-    weight: string | number;
-    style: string;
-    variant: string;
-    stretch: string | number;
+    letterSpacing?: number;
+    textTransform?: string;
+    textDecoration?: string;
 };
 export type TSugarCssSettings = {
     remFactor: number;
@@ -51,10 +87,6 @@ export type TSugarCssSettings = {
     scalable: string[];
     pxToRem: boolean;
     opacityZeroValue?: number;
-};
-export type TSugarCssFonts = {
-    family: Record<string, string[]>;
-    fonts: Record<string, TSugarCssFontsFont>;
 };
 export type TSugarCssSpace = {
     easing: string;

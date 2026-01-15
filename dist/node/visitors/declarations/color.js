@@ -1,4 +1,5 @@
 import { convert } from '@blackbyte/sugar/color';
+import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 /**
  * @name            s-color
  * @namespace       css.declaration
@@ -30,7 +31,7 @@ import { convert } from '@blackbyte/sugar/color';
  * @author          Olivier Bossel <olivier.bossel@gmail.com> (https://hello@blackbyte.space)
  */
 export default function color(v, settings) {
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p;
     const name = v.name.replace(`--s-color-`, '').replace(/\-[a-z]$/, '');
     // handle the case where the color is the s-color function
     // that will just remap the color to a new one
@@ -85,7 +86,29 @@ export default function color(v, settings) {
                 },
             },
         ];
-        const hslaColor = convert((_k = (_j = v.value[0]) === null || _j === void 0 ? void 0 : _j.value) !== null && _k !== void 0 ? _k : v.value[0], 'hsla'), hexColor = convert((_m = (_l = v.value[0]) === null || _l === void 0 ? void 0 : _l.value) !== null && _m !== void 0 ? _m : v.value[0], 'hex');
+        const hslaColor = convert((_k = (_j = v.value[0]) === null || _j === void 0 ? void 0 : _j.value) !== null && _k !== void 0 ? _k : v.value[0], 'hsla'), rgbaColor = convert((_m = (_l = v.value[0]) === null || _l === void 0 ? void 0 : _l.value) !== null && _m !== void 0 ? _m : v.value[0], 'rgba'), hexColor = convert((_p = (_o = v.value[0]) === null || _o === void 0 ? void 0 : _o.value) !== null && _p !== void 0 ? _p : v.value[0], 'hex');
+        // set the color in the sugar.jcon file
+        setSugarcssJson({
+            colors: {
+                [name]: {
+                    hex: hexColor.toString(),
+                    hsla: {
+                        h: hslaColor.h,
+                        s: hslaColor.s,
+                        l: hslaColor.l,
+                        a: hslaColor.a,
+                        string: hslaColor.toString(),
+                    },
+                    rgba: {
+                        r: rgbaColor.r,
+                        g: rgbaColor.g,
+                        b: rgbaColor.b,
+                        a: rgbaColor.a,
+                        string: rgbaColor.toString(),
+                    },
+                },
+            },
+        });
         ['h', 's', 'l', 'a'].forEach((key) => {
             result.push({
                 property: `--s-color-${name}-${key}`,

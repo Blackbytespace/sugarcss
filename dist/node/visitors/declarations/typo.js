@@ -1,5 +1,7 @@
+import { camelCaseProps } from '@blackbyte/sugar/object';
 import argsToCustomPropertiesAst from '../../utils/argsToCustomPropertiesAst.js';
 import parseArgs from '../../utils/parseArgs.js';
+import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 /**
  * @name            s-typo
  * @namespace       css.declaration
@@ -42,6 +44,12 @@ export default function typo(v, settings) {
         'text-decoration',
     ], {
         separator: ['comma', 'white-space'],
+    });
+    // save to sugarcss.json
+    setSugarcssJson({
+        typos: {
+            [name]: camelCaseProps(args.values),
+        },
     });
     if (settings.verbose) {
         console.log(`Registered typo: <cyan>${name}</cyan>: <yellow>${JSON.stringify(args.values)}</yellow>`);

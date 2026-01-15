@@ -1,4 +1,5 @@
 import parseArgs from '../../utils/parseArgs.js';
+import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 /**
  * @name            s-ease
  * @namespace       css.declaration
@@ -28,6 +29,12 @@ export default function ease(v, settings) {
         separator: ['white-space', 'comma'],
     });
     const result = [];
+    // save to sugarcss.json
+    setSugarcssJson({
+        easingFunctions: {
+            [name]: args.values.function,
+        },
+    });
     // custom css variables
     if (args.ast.function) {
         result.push({

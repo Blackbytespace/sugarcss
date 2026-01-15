@@ -2,6 +2,7 @@ import { camelCase, parse } from '@blackbyte/sugar/string';
 import { env } from '../../sugarcss.js';
 import { TSugarCssSettings } from '../../sugarcss.types.js';
 import parseArgs from '../../utils/parseArgs.js';
+import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 
 /**
  * @name            s-setting
@@ -38,6 +39,11 @@ export default function setting(v, settings: TSugarCssSettings): any {
     args = parseArgs(v.value, ['value']);
 
   env.settings[name] = parse(args.values.value);
+
+  // save to sugarcss.json
+  setSugarcssJson({
+    settings: env.settings,
+  });
 
   if (settings.verbose) {
     console.log(

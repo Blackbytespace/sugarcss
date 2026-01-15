@@ -77,7 +77,7 @@ export default function container(v, settings) {
                                                     type: 'token',
                                                     value: {
                                                         type: 'ident',
-                                                        value: 'default',
+                                                        value: args.values.container,
                                                     },
                                                 },
                                             ],

@@ -1,5 +1,7 @@
+import { camelCaseProps } from '@blackbyte/sugar/object';
 import { TSugarCssSettings } from '../../sugarcss.types.js';
 import parseArgs from '../../utils/parseArgs.js';
+import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 
 /**
  * @name            s-transition
@@ -55,6 +57,13 @@ export default function transition(v, settings: TSugarCssSettings): any {
       },
     });
   }
+
+  // save to sugarcss.json
+  setSugarcssJson({
+    transitions: {
+      [name]: camelCaseProps(args.values),
+    },
+  });
 
   if (settings.verbose) {
     console.log(

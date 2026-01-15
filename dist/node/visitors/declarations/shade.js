@@ -1,4 +1,5 @@
 import parseArgs from '../../utils/parseArgs.js';
+import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 /**
  * @name            s-shade
  * @namespace       css.declaration
@@ -93,6 +94,12 @@ export default function share(v, settings) {
             },
         });
     }
+    // save to sugarcss.json
+    setSugarcssJson({
+        shades: {
+            [shade]: finalShade,
+        },
+    });
     if (settings.verbose) {
         console.log(`Registered shade: <cyan>${shade}</cyan>: <yellow>${JSON.stringify(finalShade, null)}</yellow>`);
     }

@@ -1,7 +1,7 @@
 {
   "name": "@blackbyte/sugarcss",
   "description": "Add a sugar in your css with features like advanced color handling, media queries management, and a lot more...",
-  "version": "1.0.0-beta.7",
+  "version": "1.0.0-beta.18",
   "keywords": [
     "css",
     "lightningcss",
@@ -17,14 +17,14 @@
     "build": "tsc",
     "doc.build": "blackbyte docmap.build --mdx --outPath ./docmap.json,../website-sugarcss/docmap.json --outDir ../website-sugarcss/src/content/sugarcss",
     "test": "vitest",
-    "publish": "npm publish --access public --tag beta"
+    "publish": "npm publish --access public --tag latest"
   },
   "files": [
     "dist/",
     "src/node/sugarcss.types.ts",
     "src/css/"
   ],
-  "main": "./dist/node/sugarcss.js",
+  "main": "./dist/node/_exports.js",
   "types": "./src/node/sugarcss.types.ts",
   "author": "Blackbyte <hello@blackbyte.space> (https://blackbyte.space)",
   "contributors": [
@@ -45,7 +45,7 @@
   "globalDependencies": {},
   "dependencies": {
     "@blackbyte/config": "^1.0.0-beta.1",
-    "@blackbyte/sugar": "^1.0.0-beta.3",
+    "@blackbyte/sugar": "^1.0.0-beta.11",
     "browserslist": "^4.23.0",
     "lightningcss": "1.30.1"
   },

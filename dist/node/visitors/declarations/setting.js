@@ -1,6 +1,7 @@
 import { camelCase, parse } from '@blackbyte/sugar/string';
 import { env } from '../../sugarcss.js';
 import parseArgs from '../../utils/parseArgs.js';
+import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 /**
  * @name            s-setting
  * @namespace       css.declaration
@@ -34,6 +35,10 @@ import parseArgs from '../../utils/parseArgs.js';
 export default function setting(v, settings) {
     const name = camelCase(v.name.replace(`--s-setting-`, '')), args = parseArgs(v.value, ['value']);
     env.settings[name] = parse(args.values.value);
+    // save to sugarcss.json
+    setSugarcssJson({
+        settings: env.settings,
+    });
     if (settings.verbose) {
         console.log(`Registered setting: <cyan>${name}</cyan>: <yellow>${env.settings[name]}</yellow>`);
     }

@@ -1,6 +1,7 @@
 import { env } from '../../sugarcss.js';
 import parseArgs from '../../utils/parseArgs.js';
 import { savePersistentEnv } from '../../utils/savePersistentEnv.js';
+import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 /**
  * @name            s-grid
  * @namespace       css.declaration
@@ -53,6 +54,15 @@ export default function grid(v, settings) {
         value: {
             name: `--s-grid-${name}-gap`,
             value: [args.ast.gap],
+        },
+    });
+    // save to sugarcss.json
+    setSugarcssJson({
+        grids: {
+            [name]: {
+                layout: args.values.layout,
+                gap: args.values.gap,
+            },
         },
     });
     if (settings.verbose) {

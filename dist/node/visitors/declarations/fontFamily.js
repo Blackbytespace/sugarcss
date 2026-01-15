@@ -1,4 +1,5 @@
 import parseArgs from '../../utils/parseArgs.js';
+import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 /**
  * @name            s-font-family
  * @namespace       css.declaration
@@ -50,6 +51,12 @@ export default function fontFamily(v, settings) {
     }
     // remove the last comma
     tokens.pop();
+    // save to sugarcss.json
+    setSugarcssJson({
+        fontFamilies: {
+            [name]: Object.values(args.values),
+        },
+    });
     // custom css variables
     result.push({
         property: `--s-font-family-${name}`,

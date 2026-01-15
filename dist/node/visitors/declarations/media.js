@@ -1,6 +1,7 @@
 import { env } from '../../sugarcss.js';
 import parseArgs from '../../utils/parseArgs.js';
 import { savePersistentEnv } from '../../utils/savePersistentEnv.js';
+import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 /**
  * @name            s-media
  * @namespace       css.declaration
@@ -67,6 +68,12 @@ export default function media(v, settings) {
             },
         });
     }
+    // save to sugarcss.json
+    setSugarcssJson({
+        medias: {
+            [media]: env.medias[media],
+        },
+    });
     if (settings.verbose) {
         console.log(`Registered media: <cyan>${media}</cyan>: <yellow>${JSON.stringify(env.medias[media])}</yellow>`);
     }

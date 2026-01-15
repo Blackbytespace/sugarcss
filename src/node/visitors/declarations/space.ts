@@ -1,5 +1,6 @@
 import { TSugarCssSettings } from '../../sugarcss.types.js';
 import parseArgs from '../../utils/parseArgs.js';
+import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 
 /**
  * @name            s-space
@@ -56,6 +57,13 @@ export default function space(v, settings: TSugarCssSettings): any {
               },
             },
       ],
+    },
+  });
+
+  // save to sugarcss.json
+  setSugarcssJson({
+    spaces: {
+      [name]: value.value,
     },
   });
 

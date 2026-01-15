@@ -2,6 +2,7 @@ import { env } from '../../sugarcss.js';
 import { TSugarCssSettings } from '../../sugarcss.types.js';
 import parseArgs from '../../utils/parseArgs.js';
 import { savePersistentEnv } from '../../utils/savePersistentEnv.js';
+import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 
 /**
  * @name            s-media
@@ -75,6 +76,13 @@ export default function media(v, settings: TSugarCssSettings): any {
       },
     });
   }
+
+  // save to sugarcss.json
+  setSugarcssJson({
+    medias: {
+      [media]: env.medias[media],
+    },
+  });
 
   if (settings.verbose) {
     console.log(

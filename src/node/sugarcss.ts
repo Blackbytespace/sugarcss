@@ -7,6 +7,7 @@ import {
 } from 'lightningcss';
 import { TSugarCssEnv, TSugarCssSettings } from './sugarcss.types.js';
 import { loadPersistentEnv } from './utils/loadPersistentEnv.js';
+import { resetSugarcssJson, saveSugarcssJson } from './utils/sugarcssJson.js';
 import colorDeclaration from './visitors/declarations/color.js';
 import containerDeclaration from './visitors/declarations/container.js';
 import delayDeclaration from './visitors/declarations/delay.js';
@@ -178,6 +179,7 @@ export default function sugarcss(
   env.rules['s-tooltip'] = tooltipRule;
 
   let mixins = new Map();
+  let resetSugarcssJsonTimeout: any = null;
 
   const visitors = {
     Length(length) {
@@ -190,6 +192,16 @@ export default function sugarcss(
       }
       return length;
     },
+
+    StyleSheetExit() {
+      // handle sugarcss.json stuffs
+      saveSugarcssJson();
+      clearInterval(resetSugarcssJsonTimeout);
+      resetSugarcssJsonTimeout = setTimeout(() => {
+        resetSugarcssJson();
+      }, 1000);
+    },
+
     Function: {
       [`s-color`](v) {
         return colorFunction(v, finalSettings);
@@ -321,9 +333,6 @@ export default function sugarcss(
         }
       },
       custom: {
-        's-transition'(rule) {
-          return transitionRule(rule, finalSettings);
-        },
         mixin(rule) {
           if (rule.prelude.value === 'log') {
             console.log(JSON.stringify(rule, null, 2));

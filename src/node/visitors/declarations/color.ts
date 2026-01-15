@@ -1,6 +1,11 @@
-import { TSugarCssSettings } from '../../sugarcss.types.js';
+import {
+  TSugarColorHsla,
+  TSugarColorRgba,
+  TSugarCssSettings,
+} from '../../sugarcss.types.js';
 
 import { convert } from '@blackbyte/sugar/color';
+import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 
 /**
  * @name            s-color
@@ -101,8 +106,32 @@ export default function color(v, settings: TSugarCssSettings): any {
       },
     ];
 
-    const hslaColor = convert(v.value[0]?.value ?? v.value[0], 'hsla'),
+    const hslaColor = convert(v.value[0]?.value ?? v.value[0], 'hsla') as any,
+      rgbaColor = convert(v.value[0]?.value ?? v.value[0], 'rgba') as any,
       hexColor = convert(v.value[0]?.value ?? v.value[0], 'hex');
+
+    // set the color in the sugar.jcon file
+    setSugarcssJson({
+      colors: {
+        [name]: {
+          hex: hexColor.toString(),
+          hsla: {
+            h: hslaColor.h,
+            s: hslaColor.s,
+            l: hslaColor.l,
+            a: hslaColor.a,
+            string: hslaColor.toString(),
+          } as TSugarColorHsla,
+          rgba: {
+            r: rgbaColor.r,
+            g: rgbaColor.g,
+            b: rgbaColor.b,
+            a: rgbaColor.a,
+            string: rgbaColor.toString(),
+          } as TSugarColorRgba,
+        },
+      },
+    });
 
     ['h', 's', 'l', 'a'].forEach((key) => {
       result.push({

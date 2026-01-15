@@ -1,5 +1,6 @@
 import { TSugarCssSettings } from '../../sugarcss.types.js';
 import parseArgs from '../../utils/parseArgs.js';
+import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 
 /**
  * @name            s-font-family
@@ -57,6 +58,13 @@ export default function fontFamily(v, settings: TSugarCssSettings): any {
 
   // remove the last comma
   tokens.pop();
+
+  // save to sugarcss.json
+  setSugarcssJson({
+    fontFamilies: {
+      [name]: Object.values(args.values),
+    },
+  });
 
   // custom css variables
   result.push({

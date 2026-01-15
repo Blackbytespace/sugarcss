@@ -1,6 +1,7 @@
 import { dashCase } from '@blackbyte/sugar/string';
 import { TSugarCssRadius, TSugarCssSettings } from '../../sugarcss.types.js';
 import parseArgs from '../../utils/parseArgs.js';
+import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 
 /**
  * @name            s-radius
@@ -121,6 +122,13 @@ export default function radius(v, settings: TSugarCssSettings): any {
     ...values,
   };
   delete displayValues.ast;
+
+  // save to sugarcss.json
+  setSugarcssJson({
+    radius: {
+      [name]: displayValues,
+    },
+  });
 
   if (settings.verbose) {
     console.log(

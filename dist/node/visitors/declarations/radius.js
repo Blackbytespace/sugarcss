@@ -1,5 +1,6 @@
 import { dashCase } from '@blackbyte/sugar/string';
 import parseArgs from '../../utils/parseArgs.js';
+import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 /**
  * @name            s-radius
  * @namespace       css.declaration
@@ -108,6 +109,12 @@ export default function radius(v, settings) {
     });
     const displayValues = Object.assign({}, values);
     delete displayValues.ast;
+    // save to sugarcss.json
+    setSugarcssJson({
+        radius: {
+            [name]: displayValues,
+        },
+    });
     if (settings.verbose) {
         console.log(`Registered radius: <cyan>${name}</cyan>: <yellow>${JSON.stringify(displayValues)}</yellow>`);
     }

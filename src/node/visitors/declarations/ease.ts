@@ -1,5 +1,6 @@
 import { TSugarCssSettings } from '../../sugarcss.types.js';
 import parseArgs from '../../utils/parseArgs.js';
+import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 
 /**
  * @name            s-ease
@@ -32,6 +33,13 @@ export default function ease(v, settings: TSugarCssSettings): any {
     });
 
   const result: any[] = [];
+
+  // save to sugarcss.json
+  setSugarcssJson({
+    easingFunctions: {
+      [name]: args.values.function,
+    },
+  });
 
   // custom css variables
   if (args.ast.function) {

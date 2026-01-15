@@ -1,6 +1,7 @@
 import { TSugarCssSettings } from '../../sugarcss.types.js';
 import argsToCustomPropertiesAst from '../../utils/argsToCustomPropertiesAst.js';
 import parseArgs from '../../utils/parseArgs.js';
+import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 
 /**
  * @name            s-font
@@ -39,6 +40,13 @@ export default function font(v, settings: TSugarCssSettings): any {
   const args = parseArgs(v.value, ['family', 'weight', 'style', 'variant'], {
     separator: ['comma', 'white-space'],
     debug: false,
+  });
+
+  // save to sugarcss.json
+  setSugarcssJson({
+    fonts: {
+      [name]: args.values,
+    },
   });
 
   if (settings.verbose) {

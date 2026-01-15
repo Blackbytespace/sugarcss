@@ -1,4 +1,5 @@
 import parseArgs from '../../utils/parseArgs.js';
+import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 /**
  * @name            s-space
  * @namespace       css.declaration
@@ -50,6 +51,12 @@ export default function space(v, settings) {
                         },
                     },
             ],
+        },
+    });
+    // save to sugarcss.json
+    setSugarcssJson({
+        spaces: {
+            [name]: value.value,
         },
     });
     if (settings.verbose) {

@@ -1,5 +1,6 @@
 import { dashCase } from '@blackbyte/sugar/string';
 import parseArgs from '../../utils/parseArgs.js';
+import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 /**
  * @name            s-container
  * @namespace       css.declaration
@@ -34,6 +35,12 @@ export default function container(v, settings) {
     if (settings.verbose) {
         console.log(`Registered container: <cyan>${name}</cyan>: <yellow>${JSON.stringify(args.values)}</yellow>`);
     }
+    // save to sugarcss.json
+    setSugarcssJson({
+        containers: {
+            [name]: args.values,
+        },
+    });
     const result = [];
     for (let [key, value] of Object.entries(args.values)) {
         result.push({

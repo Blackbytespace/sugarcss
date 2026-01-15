@@ -3,6 +3,7 @@ import { parseHtml } from '@blackbyte/sugar/console';
 import browserslist from 'browserslist';
 import { browserslistToTargets, composeVisitors, } from 'lightningcss';
 import { loadPersistentEnv } from './utils/loadPersistentEnv.js';
+import { resetSugarcssJson, saveSugarcssJson } from './utils/sugarcssJson.js';
 import colorDeclaration from './visitors/declarations/color.js';
 import containerDeclaration from './visitors/declarations/container.js';
 import delayDeclaration from './visitors/declarations/delay.js';
@@ -135,6 +136,7 @@ export default function sugarcss(settings = {}) {
     env.rules['s-weight'] = weightRule;
     env.rules['s-tooltip'] = tooltipRule;
     let mixins = new Map();
+    let resetSugarcssJsonTimeout = null;
     const visitors = {
         Length(length) {
             // auto convert to rem
@@ -145,6 +147,14 @@ export default function sugarcss(settings = {}) {
                 };
             }
             return length;
+        },
+        StyleSheetExit() {
+            // handle sugarcss.json stuffs
+            saveSugarcssJson();
+            clearInterval(resetSugarcssJsonTimeout);
+            resetSugarcssJsonTimeout = setTimeout(() => {
+                resetSugarcssJson();
+            }, 1000);
         },
         Function: {
             [`s-color`](v) {
@@ -278,9 +288,6 @@ export default function sugarcss(settings = {}) {
                 }
             },
             custom: {
-                's-transition'(rule) {
-                    return transitionRule(rule, finalSettings);
-                },
                 mixin(rule) {
                     if (rule.prelude.value === 'log') {
                         console.log(JSON.stringify(rule, null, 2));

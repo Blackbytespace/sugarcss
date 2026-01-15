@@ -1,6 +1,8 @@
+import { camelCaseProps } from '@blackbyte/sugar/object';
 import { TSugarCssSettings } from '../../sugarcss.types.js';
 import argsToCustomPropertiesAst from '../../utils/argsToCustomPropertiesAst.js';
 import parseArgs from '../../utils/parseArgs.js';
+import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 
 /**
  * @name            s-typo
@@ -50,6 +52,13 @@ export default function typo(v, settings: TSugarCssSettings): any {
       separator: ['comma', 'white-space'],
     },
   );
+
+  // save to sugarcss.json
+  setSugarcssJson({
+    typos: {
+      [name]: camelCaseProps(args.values),
+    },
+  });
 
   if (settings.verbose) {
     console.log(

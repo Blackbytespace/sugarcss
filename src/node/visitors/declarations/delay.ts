@@ -1,5 +1,6 @@
 import { TSugarCssSettings } from '../../sugarcss.types.js';
 import parseArgs from '../../utils/parseArgs.js';
+import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 
 /**
  * @name            s-delay
@@ -35,6 +36,13 @@ export default function grid(v, settings: TSugarCssSettings): any {
     args = parseArgs(v.value, ['delay'], {
       separator: ['white-space', 'comma'],
     });
+
+  // save to sugarcss.json
+  setSugarcssJson({
+    delays: {
+      [name]: args.values.delay,
+    },
+  });
 
   const result: any[] = [];
 

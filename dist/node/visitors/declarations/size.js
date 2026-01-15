@@ -1,4 +1,5 @@
 import parseArgs from '../../utils/parseArgs.js';
+import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 /**
  * @name            s-size
  * @namespace       css.declaration
@@ -50,6 +51,12 @@ export default function size(v, settings) {
                         },
                     },
             ],
+        },
+    });
+    // save to sugarcss.json
+    setSugarcssJson({
+        sizes: {
+            [name]: value.value,
         },
     });
     if (settings.verbose) {

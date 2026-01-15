@@ -1,5 +1,6 @@
 import { TSugarCssSettings } from '../../sugarcss.types.js';
 import parseArgs from '../../utils/parseArgs.js';
+import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 
 /**
  * @name            s-shade
@@ -102,6 +103,13 @@ export default function share(v, settings: TSugarCssSettings): any {
       },
     });
   }
+
+  // save to sugarcss.json
+  setSugarcssJson({
+    shades: {
+      [shade]: finalShade,
+    },
+  });
 
   if (settings.verbose) {
     console.log(
