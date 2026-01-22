@@ -1016,6 +1016,12 @@
                         "code": ":root {\n   // min-width max-width side-padding\n   --s-container-default: 320px 1200px 20px;\n   --s-container-full: 0 100% 20px;\n}\n\n.my-element {\n     @s-container();\n     @s-container(full);\n}"
                     }
                 ],
+                "changelog": [
+                    {
+                        "version": "1.0.0.beta.17",
+                        "description": "Fix container rule to generate correct css"
+                    }
+                ],
                 "since": "0.0.1",
                 "author": {
                     "name": "Olivier Bossel",
@@ -3203,13 +3209,19 @@
                         "description": ""
                     }
                 ],
-                "description": "This mixin allows you to apply the destyle css with some additional\nreset rules like:\n- Reset `mark` background color\n- Font smoothing to &quot;antialiased&quot; for --webkit browsers\n- Apply `user-select: none` to all elements except input, textarea, [contenteditable], code, h1, h2, h3, h4, h5, h6, p, td, th, blockquote, li, dl, dt, dd\n- Remove the default outline",
+                "description": "This mixin allows you to apply the destyle css with some additional\nreset rules like:\n- Reset `mark` background color\n- Font smoothing to &quot;antialiased&quot; for --webkit browsers\n- Apply `user-select: none` to all elements except input, textarea, [contenteditable], code, h1, h2, h3, h4, h5, h6, p, td, th, blockquote, li, dl, dt, dd\n- Remove the default outline\n- Hide the google recaptcha badge",
                 "namespace": "@blackbyte.sugarcss.css.mixins",
                 "status": "stable",
                 "example": [
                     {
                         "language": "css",
                         "code": "@include s-reset;"
+                    }
+                ],
+                "changelog": [
+                    {
+                        "version": "1.0.0.beta.16",
+                        "description": "Hide google recaptcha badge"
                     }
                 ],
                 "since": "1.0.0",
