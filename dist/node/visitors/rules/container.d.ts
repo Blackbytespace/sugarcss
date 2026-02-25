@@ -27,6 +27,8 @@ import { TSugarCssSettings } from '../../sugarcss.types.js';
  *      @s-container(full);
  * }
  *
+ * @changelog    1.0.0.beta.17         Fix container rule to generate correct css
+ *
  * @since           0.0.1
  * @author          Olivier Bossel <olivier.bossel@gmail.com> (https://hello@blackbyte.space)
  */

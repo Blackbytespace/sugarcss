@@ -1,7 +1,7 @@
 {
   "name": "@blackbyte/sugarcss",
   "description": "Add a sugar in your css with features like advanced color handling, media queries management, and a lot more...",
-  "version": "1.0.0-beta.18",
+  "version": "1.0.0-beta.20",
   "keywords": [
     "css",
     "lightningcss",
