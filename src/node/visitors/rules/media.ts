@@ -25,7 +25,7 @@ import { TSugarCssSettings } from '../../sugarcss.types.js';
  * - `e-...`: equal
  * - `dark`: dark mode
  * - `light`: light mode
- * - 'theme-...': theme
+ * - `theme-...`: theme
  * - `cs-...`: color schema
  *
  * @param      {String}        query              The query to parse
