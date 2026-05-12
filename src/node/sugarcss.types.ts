@@ -41,6 +41,7 @@ export type TSugarCssJson = {
   fontFamilies: Record<string, string[]>;
   grids: Record<string, TSugarCssGrid>;
   medias: Record<string, TSugarCssMedia>;
+  responsiveValues: Record<string, TSugarCssResponsiveValue>;
   radius: Record<string, TSugarCssRadius>;
   settings: TSugarCssEnv['settings'];
   shades: Record<string, TSugarCssShade>;
@@ -57,6 +58,7 @@ export type TSugarCssEnv = {
   settings: TSugarCssSettings;
   easingFunctions: Record<string, string>;
   medias: Record<string, TSugarCssMedia>;
+  responsiveValues: Record<string, TSugarCssResponsiveValue>;
   grids: Record<string, TSugarCssGrid>;
   spaces: TSugarCssSpace;
   sizes: TSugarCssSize;
@@ -125,6 +127,13 @@ export type TSugarCssShade = {
 export type TSugarCssMedia = {
   min?: number;
   max?: number;
+};
+
+export type TSugarCssResponsiveValue = {
+  min: number;
+  max: number;
+  breakpointMin?: number;
+  breakpointMax?: number;
 };
 
 export type TSugarCssEasing = {

@@ -13,6 +13,7 @@ import fontFamilyDeclaration from './visitors/declarations/fontFamily.js';
 import gridDeclaration from './visitors/declarations/grid.js';
 import mediaDeclaration from './visitors/declarations/media.js';
 import radiusDeclaration from './visitors/declarations/radius.js';
+import responsiveValueDeclaration from './visitors/declarations/responsiveValue.js';
 import settingDeclaration from './visitors/declarations/setting.js';
 import shadeDeclaration from './visitors/declarations/shade.js';
 import sizeDeclaration from './visitors/declarations/size.js';
@@ -29,6 +30,7 @@ import fontFunction from './visitors/functions/font.js';
 import fontFamilyFunction from './visitors/functions/fontFamily.js';
 import radiusFunction from './visitors/functions/radius.js';
 import remFunction from './visitors/functions/rem.js';
+import responsiveValue from './visitors/functions/responsiveValue.js';
 import scalableFunction from './visitors/functions/scalable.js';
 import sizeFunction from './visitors/functions/size.js';
 import spaceFunction from './visitors/functions/space.js';
@@ -70,7 +72,7 @@ export const env = Object.assign(Object.assign({ persistentEnvs: ['medias', 'gri
         outQuint: '1 - pow(1 - t, 5)',
         inExpo: 'pow(2, 10 * (t - 1))',
         outExpo: '1 - pow(2, -10 * t)',
-    }, medias: {}, grids: {}, spaces: {
+    }, medias: {}, responsiveValues: {}, grids: {}, spaces: {
         easing: 'linear',
         min: 0,
         max: 100,
@@ -122,6 +124,7 @@ export default function sugarcss(settings = {}) {
     env.functions['s-zindex'] = zindexFunction;
     env.functions['s-weight'] = weight;
     env.functions['s-delay'] = delayFunction;
+    env.functions['s-responsive-value'] = responsiveValue;
     env.rules['s-scrollbar'] = scrollbarRule;
     env.rules['s-transition'] = transitionRule;
     env.rules['s-radius'] = radiusRule;
@@ -199,6 +202,9 @@ export default function sugarcss(settings = {}) {
             ['s-delay'](v) {
                 return delayFunction(v, finalSettings);
             },
+            ['s-responsive-value'](v) {
+                return responsiveValue(v, finalSettings);
+            },
         },
         Declaration: {
             opacity(decl) {
@@ -248,6 +254,8 @@ export default function sugarcss(settings = {}) {
                         return gridDeclaration(v, finalSettings);
                     case v.name.startsWith(`--s-delay-`):
                         return delayDeclaration(v, finalSettings);
+                    case v.name.startsWith(`--s-responsive-value-`):
+                        return responsiveValueDeclaration(v, finalSettings);
                 }
             },
         },

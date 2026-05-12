@@ -631,7 +631,7 @@
                         "description": ""
                     }
                 ],
-                "description": "This function allows you to define media queries easily with these features:\n\n- Define your own media queries like so: --s-media-desktop: 1024px 9999px;\n- Use defined media queries easily\n- Support for `dark` and `light` media queries\n- Support for &quot;color schema&quot; media queries like `cs-...` that will target elements inside the `cs-...` class\n- Support for &quot;theme&quot; media queries like `theme-...` that will target elements inside the `theme-...` class\n\nSupport for operators like:\n\n- `lt-...`: lower than\n- `lte-...`: lower than or equal\n- `gt-...`: greater than\n- `gte-...`: greater than or equal\n- `e-...`: equal\n- `dark`: dark mode\n- `light`: light mode\n- &#39;theme-...&#39;: theme\n- `cs-...`: color schema",
+                "description": "This function allows you to define media queries easily with these features:\n\n- Define your own media queries like so: --s-media-desktop: 1024px 9999px;\n- Use defined media queries easily\n- Support for `dark` and `light` media queries\n- Support for &quot;color schema&quot; media queries like `cs-...` that will target elements inside the `cs-...` class\n- Support for &quot;theme&quot; media queries like `theme-...` that will target elements inside the `theme-...` class\n\nSupport for operators like:\n\n- `lt-...`: lower than\n- `lte-...`: lower than or equal\n- `gt-...`: greater than\n- `gte-...`: greater than or equal\n- `e-...`: equal\n- `dark`: dark mode\n- `light`: light mode\n- `theme-...`: theme\n- `cs-...`: color schema",
                 "namespace": "@blackbyte.sugarcss.css.rule",
                 "status": "stable",
                 "snippet": {
@@ -1394,6 +1394,99 @@
                 "filename": "size.ts",
                 "extension": "ts",
                 "relPath": "src/node/visitors/functions/size.ts",
+                "children": {}
+            },
+            "@blackbyte.sugarcss.css.function.s-responsive-value": {
+                "id": "@blackbyte.sugarcss.css.function.s-responsive-value",
+                "name": "s-responsive-value",
+                "type": {
+                    "types": [
+                        {
+                            "type": "Function"
+                        }
+                    ],
+                    "raw": "Function"
+                },
+                "param": {
+                    "min": {
+                        "name": "min",
+                        "type": {
+                            "types": [
+                                {
+                                    "type": "Number"
+                                },
+                                {
+                                    "type": "String"
+                                }
+                            ],
+                            "raw": "Number|String"
+                        },
+                        "description": "The minimum value for the responsive value or the name of the responsive value defined in the css variables",
+                        "defaultStr": ""
+                    },
+                    "max": {
+                        "name": "max",
+                        "type": {
+                            "types": [
+                                {
+                                    "type": "Number"
+                                }
+                            ],
+                            "raw": "Number"
+                        },
+                        "description": "The maximum value for the responsive value",
+                        "defaultStr": ""
+                    },
+                    "name": {
+                        "name": "name",
+                        "type": {
+                            "types": [
+                                {
+                                    "type": "String"
+                                }
+                            ],
+                            "raw": "String"
+                        },
+                        "description": "The name of the responsive value defined in the css variables (optional if the name is specified in the \"min\" parameter)",
+                        "default": "default",
+                        "defaultStr": "\"default\""
+                    }
+                },
+                "return": {
+                    "type": {
+                        "types": [
+                            {
+                                "type": "Css"
+                            }
+                        ],
+                        "raw": "Css"
+                    },
+                    "description": "The generated css"
+                },
+                "platform": [
+                    {
+                        "name": "css",
+                        "description": ""
+                    }
+                ],
+                "description": "This function allows you to generate a responsive value based on the provided settings.\nIt uses the CSS clamp function to generate a value that will be responsive between a minimum and a maximum value based on the viewport width.\nYou can define custom breakpoints and values for each responsive value using css variables.",
+                "namespace": "@blackbyte.sugarcss.css.function",
+                "status": "stable",
+                "example": [
+                    {
+                        "language": "css",
+                        "code": ":root {\n   / min max breakpoint-min breakpoint-max *\\/\n   --s-responsive-value-default: 30px 50px 768px 1200px;\n   / if not specified the breakpoints will take the \"default\" values defined above *\\/\n   --s-responsive-value-h1: 40px 40px;\n}\n.my-element {\n   / 10px for viewport smaller than 768px, 100px\n      for viewport larger than 1200px, and a responsive value\n      between 10px and 100px for viewport between 768px and 1200px \\/\n   font-size: s-responsive-value(10px, 100px);\n\n   / using the \"h1\" responsive value defined in the css variables *\\/\n   font-size: s-responsive-value(h1);\n}"
+                    }
+                ],
+                "since": "0.0.1",
+                "author": {
+                    "name": "Olivier Bossel",
+                    "email": "olivier.bossel@gmail.com",
+                    "url": "https://hello@blackbyte.space"
+                },
+                "filename": "responsiveValue.ts",
+                "extension": "ts",
+                "relPath": "src/node/visitors/functions/responsiveValue.ts",
                 "children": {}
             },
             "@blackbyte.sugarcss.css.function.s-rem": {
@@ -2524,6 +2617,108 @@
                 "filename": "setting.ts",
                 "extension": "ts",
                 "relPath": "src/node/visitors/declarations/setting.ts",
+                "children": {}
+            },
+            "@blackbyte.sugarcss.css.declaration.s-responsive-value": {
+                "id": "@blackbyte.sugarcss.css.declaration.s-responsive-value",
+                "name": "s-responsive-value",
+                "type": {
+                    "types": [
+                        {
+                            "type": "Declaration"
+                        }
+                    ],
+                    "raw": "Declaration"
+                },
+                "param": {
+                    "min": {
+                        "name": "min",
+                        "type": {
+                            "types": [
+                                {
+                                    "type": "Number"
+                                }
+                            ],
+                            "raw": "Number"
+                        },
+                        "description": "The minimum value for the responsive value",
+                        "defaultStr": ""
+                    },
+                    "max": {
+                        "name": "max",
+                        "type": {
+                            "types": [
+                                {
+                                    "type": "Number"
+                                }
+                            ],
+                            "raw": "Number"
+                        },
+                        "description": "The maximum value for the responsive value",
+                        "defaultStr": ""
+                    },
+                    "breakpointMin": {
+                        "name": "breakpointMin",
+                        "type": {
+                            "types": [
+                                {
+                                    "type": "Number"
+                                }
+                            ],
+                            "raw": "Number"
+                        },
+                        "description": "The minimum breakpoint for the responsive value",
+                        "defaultStr": ""
+                    },
+                    "breakpointMax": {
+                        "name": "breakpointMax",
+                        "type": {
+                            "types": [
+                                {
+                                    "type": "Number"
+                                }
+                            ],
+                            "raw": "Number"
+                        },
+                        "description": "The maximum breakpoint for the responsive value",
+                        "defaultStr": ""
+                    }
+                },
+                "return": {
+                    "type": {
+                        "types": [
+                            {
+                                "type": "Css"
+                            }
+                        ],
+                        "raw": "Css"
+                    },
+                    "description": "The generated css"
+                },
+                "platform": [
+                    {
+                        "name": "css",
+                        "description": ""
+                    }
+                ],
+                "description": "This allows you to declare a responsive value settings.\nYou can define custom breakpoints and values for each responsive value using css variables.",
+                "namespace": "@blackbyte.sugarcss.css.declaration",
+                "status": "stable",
+                "example": [
+                    {
+                        "language": "css",
+                        "code": ":root {\n   / min max breakpoint-min breakpoint-max *\\/\n   --s-responsive-value-default: 30px 50px 768px 1200px;\n   / if not specified the breakpoints will take the \"default\" values defined above *\\/\n   --s-responsive-value-h1: 40px 40px;\n}\n.my-element {\n   / 10px for viewport smaller than 768px, 100px\n      for viewport larger than 1200px, and a responsive value\n      between 10px and 100px for viewport between 768px and 1200px \\/\n   font-size: s-responsive-value(10px, 100px);\n\n   / using the \"h1\" responsive value defined in the css variables *\\/\n   font-size: s-responsive-value(h1);\n}"
+                    }
+                ],
+                "since": "0.0.1",
+                "author": {
+                    "name": "Olivier Bossel",
+                    "email": "olivier.bossel@gmail.com",
+                    "url": "https://hello@blackbyte.space"
+                },
+                "filename": "responsiveValue.ts",
+                "extension": "ts",
+                "relPath": "src/node/visitors/declarations/responsiveValue.ts",
                 "children": {}
             },
             "@blackbyte.sugarcss.css.declaration.s-radius": {
