@@ -1396,9 +1396,9 @@
                 "relPath": "src/node/visitors/functions/size.ts",
                 "children": {}
             },
-            "@blackbyte.sugarcss.css.function.s-responsive-value": {
-                "id": "@blackbyte.sugarcss.css.function.s-responsive-value",
-                "name": "s-responsive-value",
+            "@blackbyte.sugarcss.css.function.s-responsive": {
+                "id": "@blackbyte.sugarcss.css.function.s-responsive",
+                "name": "s-responsive",
                 "type": {
                     "types": [
                         {
@@ -1436,20 +1436,6 @@
                         },
                         "description": "The maximum value for the responsive value",
                         "defaultStr": ""
-                    },
-                    "name": {
-                        "name": "name",
-                        "type": {
-                            "types": [
-                                {
-                                    "type": "String"
-                                }
-                            ],
-                            "raw": "String"
-                        },
-                        "description": "The name of the responsive value defined in the css variables (optional if the name is specified in the \"min\" parameter)",
-                        "default": "default",
-                        "defaultStr": "\"default\""
                     }
                 },
                 "return": {
@@ -1475,7 +1461,7 @@
                 "example": [
                     {
                         "language": "css",
-                        "code": ":root {\n   / min max breakpoint-min breakpoint-max *\\/\n   --s-responsive-value-default: 30px 50px 768px 1200px;\n   / if not specified the breakpoints will take the \"default\" values defined above *\\/\n   --s-responsive-value-h1: 40px 40px;\n}\n.my-element {\n   / 10px for viewport smaller than 768px, 100px\n      for viewport larger than 1200px, and a responsive value\n      between 10px and 100px for viewport between 768px and 1200px \\/\n   font-size: s-responsive-value(10px, 100px);\n\n   / using the \"h1\" responsive value defined in the css variables *\\/\n   font-size: s-responsive-value(h1);\n}"
+                        "code": ":root {\n   / breakpoints *\\/\n   --s-responsive-breakpoints: 768px 1200px;\n   / min max *\\/\n   --s-responsive-default: 30px 50px;\n}\n.my-element {\n   font-size: s-responsive(10px, 100px);\n   font-size: s-responsive(h1);\n}"
                     }
                 ],
                 "since": "0.0.1",
@@ -1484,9 +1470,9 @@
                     "email": "olivier.bossel@gmail.com",
                     "url": "https://hello@blackbyte.space"
                 },
-                "filename": "responsiveValue.ts",
+                "filename": "responsive.ts",
                 "extension": "ts",
-                "relPath": "src/node/visitors/functions/responsiveValue.ts",
+                "relPath": "src/node/visitors/functions/responsive.ts",
                 "children": {}
             },
             "@blackbyte.sugarcss.css.function.s-rem": {
@@ -2619,9 +2605,9 @@
                 "relPath": "src/node/visitors/declarations/setting.ts",
                 "children": {}
             },
-            "@blackbyte.sugarcss.css.declaration.s-responsive-value": {
-                "id": "@blackbyte.sugarcss.css.declaration.s-responsive-value",
-                "name": "s-responsive-value",
+            "@blackbyte.sugarcss.css.declaration.s-responsive": {
+                "id": "@blackbyte.sugarcss.css.declaration.s-responsive",
+                "name": "s-responsive",
                 "type": {
                     "types": [
                         {
@@ -2656,32 +2642,6 @@
                         },
                         "description": "The maximum value for the responsive value",
                         "defaultStr": ""
-                    },
-                    "breakpointMin": {
-                        "name": "breakpointMin",
-                        "type": {
-                            "types": [
-                                {
-                                    "type": "Number"
-                                }
-                            ],
-                            "raw": "Number"
-                        },
-                        "description": "The minimum breakpoint for the responsive value",
-                        "defaultStr": ""
-                    },
-                    "breakpointMax": {
-                        "name": "breakpointMax",
-                        "type": {
-                            "types": [
-                                {
-                                    "type": "Number"
-                                }
-                            ],
-                            "raw": "Number"
-                        },
-                        "description": "The maximum breakpoint for the responsive value",
-                        "defaultStr": ""
                     }
                 },
                 "return": {
@@ -2701,13 +2661,13 @@
                         "description": ""
                     }
                 ],
-                "description": "This allows you to declare a responsive value settings.\nYou can define custom breakpoints and values for each responsive value using css variables.",
+                "description": "This allows you to declare responsive value settings and global breakpoints.",
                 "namespace": "@blackbyte.sugarcss.css.declaration",
                 "status": "stable",
                 "example": [
                     {
                         "language": "css",
-                        "code": ":root {\n   / min max breakpoint-min breakpoint-max *\\/\n   --s-responsive-value-default: 30px 50px 768px 1200px;\n   / if not specified the breakpoints will take the \"default\" values defined above *\\/\n   --s-responsive-value-h1: 40px 40px;\n}\n.my-element {\n   / 10px for viewport smaller than 768px, 100px\n      for viewport larger than 1200px, and a responsive value\n      between 10px and 100px for viewport between 768px and 1200px \\/\n   font-size: s-responsive-value(10px, 100px);\n\n   / using the \"h1\" responsive value defined in the css variables *\\/\n   font-size: s-responsive-value(h1);\n}"
+                        "code": ":root {\n   / breakpoints *\\/\n   --s-responsive-breakpoints: 768px 1200px;\n   / min max *\\/\n   --s-responsive-default: 30px 50px;\n}\n.my-element {\n   font-size: s-responsive(10px, 100px);\n   font-size: s-responsive(h1);\n}"
                     }
                 ],
                 "since": "0.0.1",
@@ -2716,9 +2676,9 @@
                     "email": "olivier.bossel@gmail.com",
                     "url": "https://hello@blackbyte.space"
                 },
-                "filename": "responsiveValue.ts",
+                "filename": "responsive.ts",
                 "extension": "ts",
-                "relPath": "src/node/visitors/declarations/responsiveValue.ts",
+                "relPath": "src/node/visitors/declarations/responsive.ts",
                 "children": {}
             },
             "@blackbyte.sugarcss.css.declaration.s-radius": {
