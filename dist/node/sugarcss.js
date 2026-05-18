@@ -8,6 +8,7 @@ import colorDeclaration from './visitors/declarations/color.js';
 import containerDeclaration from './visitors/declarations/container.js';
 import delayDeclaration from './visitors/declarations/delay.js';
 import easeDeclaration from './visitors/declarations/ease.js';
+import focusDeclaration from './visitors/declarations/focus.js';
 import fontDeclaration from './visitors/declarations/font.js';
 import fontFamilyDeclaration from './visitors/declarations/fontFamily.js';
 import gridDeclaration from './visitors/declarations/grid.js';
@@ -39,6 +40,7 @@ import weight from './visitors/functions/weight.js';
 import zindexFunction from './visitors/functions/zindex.js';
 import containerRule from './visitors/rules/container.js';
 import fitRule from './visitors/rules/fit.js';
+import focusRule from './visitors/rules/focus.js';
 import fontRule from './visitors/rules/font.js';
 import gridRule from './visitors/rules/grid.js';
 import mapColorRule from './visitors/rules/mapColor.js';
@@ -137,6 +139,7 @@ export default function sugarcss(settings = {}) {
     env.rules['s-font'] = fontRule;
     env.rules['s-typo'] = typoRule;
     env.rules['s-fit'] = fitRule;
+    env.rules['s-focus'] = focusRule;
     env.rules['s-map-color'] = mapColorRule;
     env.rules['s-container'] = containerRule;
     env.rules['s-grid'] = gridRule;
@@ -227,6 +230,8 @@ export default function sugarcss(settings = {}) {
                     case v.name.startsWith(`--s-color-`) &&
                         v.name.match(/\-(h|s|l|a|o)$/) === null:
                         return colorDeclaration(v, finalSettings);
+                    case v.name.startsWith(`--s-focus-`):
+                        return focusDeclaration(v, finalSettings);
                     case v.name.startsWith(`--s-shade-`):
                         return shadeDeclaration(v, finalSettings);
                     case v.name.startsWith(`--s-media-`):
@@ -281,6 +286,8 @@ export default function sugarcss(settings = {}) {
                             return fontRule(rule, finalSettings);
                         case rule.name === `s-fit`:
                             return fitRule(rule, finalSettings);
+                        case rule.name === 's-focus':
+                            return focusRule(rule, finalSettings);
                         case rule.name === `s-container`:
                             return containerRule(rule, finalSettings);
                         case rule.name === 's-map-color':
