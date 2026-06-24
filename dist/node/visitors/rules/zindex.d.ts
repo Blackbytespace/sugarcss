@@ -2,7 +2,7 @@ import { TSugarCssSettings } from '../../sugarcss.types.js';
 /**
  * @name            s-zindex
  * @namespace       css.rule
- * @type            Function
+ * @type            AtRule
  * @platform        css
  * @status          stable
  *

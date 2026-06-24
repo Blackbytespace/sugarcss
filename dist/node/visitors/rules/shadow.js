@@ -1,36 +1,40 @@
 import parseArgs from '../../utils/parseArgs.js';
 /**
- * @name            s-zindex
+ * @name            s-shadow
  * @namespace       css.rule
  * @type            AtRule
  * @platform        css
  * @status          stable
  *
- * This rule allows you to apply a z-index value from the registered z-indexes in the config.
+ * This declaration allows you to apply a registered shadow easily.
+ * To be able to use this, you need to register at least 1 shadow like in the example below:
  *
- * @param       {String}        name             The z-index name you want to get from the config
- * @param       {Number}        [offset=0]       An offset to apply to the z-index value
+ * @param      {String}        name              The transition name you want to apply
  * @return     {Css}                             The generated css
+ *
+ * @snippet       @s-shadow($1);
  *
  * @example         css
  * :root {
- *    --s-zindex-header: 100;
- *    --s-zindex-chatbot: 200;
+ *    --s-shadow-default: 0 2px 4px rgba(0, 0, 0, 0.1);
+ *    --s-shadow-special: 0 4px 8px rgba(0, 0, 0, 0.2);
  * }
  *
  * .my-element {
- *    @s-zindex(header); // z-index: 200;
- *    @s-zindex(chatbot); // z-index: 200;
- *    @s-zindex(header, -1); // z-index: 199;
+ *      @s-shadow();
+ * }
+ *
+ * .my-other-element {
+ *     @s-shadow(special);
  * }
  *
  * @since           0.0.1
  * @author          Olivier Bossel <olivier.bossel@gmail.com> (https://hello@blackbyte.space)
  */
-export default function zindex(v, settings) {
+export default function shadow(v, settings) {
     // parse args
-    const args = Object.assign({}, parseArgs(v.prelude, ['name', 'offset']));
-    args.values = Object.assign({ offset: 0 }, args.values);
+    const args = Object.assign({}, parseArgs(v.prelude, ['name']));
+    args.values = Object.assign({ name: 'default' }, args.values);
     const ast = [
         {
             type: 'style',
@@ -49,14 +53,18 @@ export default function zindex(v, settings) {
                             property: 'unparsed',
                             value: {
                                 propertyId: {
-                                    property: 'z-index',
+                                    property: `box-shadow`,
+                                    vendor_prefix: [],
                                 },
                                 value: [
                                     {
-                                        type: 'function',
+                                        type: 'var',
                                         value: {
-                                            name: 's-zindex',
-                                            arguments: v.prelude,
+                                            name: {
+                                                ident: `--s-shadow-${args.values.name}`,
+                                                from: null,
+                                            },
+                                            fallback: null,
                                         },
                                     },
                                 ],
@@ -75,4 +83,4 @@ export default function zindex(v, settings) {
     ];
     return ast;
 }
-//# sourceMappingURL=zindex.js.map
+//# sourceMappingURL=shadow.js.map

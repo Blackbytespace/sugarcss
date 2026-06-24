@@ -38,6 +38,7 @@ export type TSugarCssJson = {
     responsives: Record<string, TSugarCssResponsive>;
     radius: Record<string, TSugarCssRadius>;
     settings: TSugarCssEnv['settings'];
+    shadows: Record<string, TSugarCssShadow>;
     shades: Record<string, TSugarCssShade>;
     sizes: Record<string, number | string>;
     spaces: Record<string, number | string>;
@@ -54,6 +55,7 @@ export type TSugarCssEnv = {
     responsives: Record<string, TSugarCssResponsive>;
     grids: Record<string, TSugarCssGrid>;
     spaces: TSugarCssSpace;
+    shadows: Record<string, TSugarCssShadow>;
     sizes: TSugarCssSize;
 };
 export type TSugarCssGrid = {
@@ -99,6 +101,9 @@ export type TSugarCssSize = {
     easing: string;
     min: number;
     max: number;
+};
+export type TSugarCssShadow = {
+    value: string;
 };
 export type TSugarCssShade = {
     darken?: number;
