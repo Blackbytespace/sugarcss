@@ -4,7 +4,7 @@ import parseArgs from '../../utils/parseArgs.js';
 /**
  * @name            s-zindex
  * @namespace       css.rule
- * @type            Function
+ * @type            AtRule
  * @platform        css
  * @status          stable
  *
