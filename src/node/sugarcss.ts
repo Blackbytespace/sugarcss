@@ -18,9 +18,10 @@ import fontFamilyDeclaration from './visitors/declarations/fontFamily.js';
 import gridDeclaration from './visitors/declarations/grid.js';
 import mediaDeclaration from './visitors/declarations/media.js';
 import radiusDeclaration from './visitors/declarations/radius.js';
-import responsiveDeclaration from './visitors/declarations/responsive.js';
+import responsiveBreakpointsDeclaration from './visitors/declarations/responsiveBreakpoints.js';
 import settingDeclaration from './visitors/declarations/setting.js';
 import shadeDeclaration from './visitors/declarations/shade.js';
+import shadowDeclaration from './visitors/declarations/shadow.js';
 import sizeDeclaration from './visitors/declarations/size.js';
 import sizesDeclaration from './visitors/declarations/sizes.js';
 import spaceDeclaration from './visitors/declarations/space.js';
@@ -37,6 +38,7 @@ import radiusFunction from './visitors/functions/radius.js';
 import remFunction from './visitors/functions/rem.js';
 import responsive from './visitors/functions/responsive.js';
 import scalableFunction from './visitors/functions/scalable.js';
+import shadowFunction from './visitors/functions/shadow.js';
 import sizeFunction from './visitors/functions/size.js';
 import spaceFunction from './visitors/functions/space.js';
 import transitionFunction from './visitors/functions/transition.js';
@@ -52,9 +54,11 @@ import mediaRule from './visitors/rules/media.js';
 import radiusRule from './visitors/rules/radius.js';
 import scaleRule from './visitors/rules/scale.js';
 import scrollbarRule from './visitors/rules/scrollbar.js';
+import shadowRule from './visitors/rules/shadow.js';
 import tooltipRule from './visitors/rules/tooltip.js';
 import transitionRule from './visitors/rules/transition.js';
 import typoRule from './visitors/rules/typo.js';
+import visuallyHiddenRule from './visitors/rules/visuallyHidden.js';
 import weightRule from './visitors/rules/weight.js';
 import zindexRule from './visitors/rules/zindex.js';
 
@@ -104,6 +108,7 @@ export const env: TSugarCssEnv = {
     min: 0,
     max: 100,
   },
+  shadows: {},
   ...persistentEnv,
   settings: {
     remFactor: 0.0625,
@@ -173,6 +178,7 @@ export default function sugarcss(
   env.functions['s-rem'] = remFunction;
   env.functions['s-zindex'] = zindexFunction;
   env.functions['s-weight'] = weight;
+  env.functions['s-shadow'] = shadowFunction;
   env.functions['s-delay'] = delayFunction;
   env.functions['s-responsive'] = responsive;
 
@@ -190,7 +196,8 @@ export default function sugarcss(
   env.rules['s-zindex'] = zindexRule;
   env.rules['s-weight'] = weightRule;
   env.rules['s-tooltip'] = tooltipRule;
-
+  env.rules['s-visually-hidden'] = visuallyHiddenRule;
+  env.rules['s-shadow'] = shadowRule;
   let mixins = new Map();
   let resetSugarcssJsonTimeout: any = null;
 
@@ -261,6 +268,9 @@ export default function sugarcss(
       ['s-responsive'](v) {
         return responsive(v, finalSettings);
       },
+      ['s-shadow'](v) {
+        return shadowFunction(v, finalSettings);
+      },
     },
     Declaration: {
       opacity(decl) {
@@ -310,10 +320,12 @@ export default function sugarcss(
             return containerDeclaration(v, finalSettings);
           case v.name.startsWith(`--s-grid-`):
             return gridDeclaration(v, finalSettings);
+          case v.name.startsWith(`--s-shadow-`):
+            return shadowDeclaration(v, finalSettings);
           case v.name.startsWith(`--s-delay-`):
             return delayDeclaration(v, finalSettings);
-          case v.name.startsWith(`--s-responsive-`):
-            return responsiveDeclaration(v, finalSettings);
+          case v.name.startsWith(`--s-responsive-breakpoints`):
+            return responsiveBreakpointsDeclaration(v, finalSettings);
         }
       },
     },
@@ -349,6 +361,10 @@ export default function sugarcss(
               return weightRule(rule, finalSettings);
             case rule.name === 's-tooltip':
               return tooltipRule(rule, finalSettings);
+            case rule.name === 's-visually-hidden':
+              return visuallyHiddenRule(rule, finalSettings);
+            case rule.name === 's-shadow':
+              return shadowRule(rule, finalSettings);
           }
         } catch (e) {
           console.error(e);
