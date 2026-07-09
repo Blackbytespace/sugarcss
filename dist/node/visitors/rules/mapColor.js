@@ -65,9 +65,7 @@ export default function color(v, settings) {
                                         value: {
                                             name: {
                                                 ident: `--s-color-${args.values.name}-o`,
-                                                from: null,
                                             },
-                                            fallback: null,
                                         },
                                     },
                                 ],
@@ -83,9 +81,7 @@ export default function color(v, settings) {
                                         value: {
                                             name: {
                                                 ident: `--s-color-${args.values.name}-h`,
-                                                from: null,
                                             },
-                                            fallback: null,
                                         },
                                     },
                                 ],
@@ -101,9 +97,7 @@ export default function color(v, settings) {
                                         value: {
                                             name: {
                                                 ident: `--s-color-${args.values.name}-s`,
-                                                from: null,
                                             },
-                                            fallback: null,
                                         },
                                     },
                                 ],
@@ -119,9 +113,7 @@ export default function color(v, settings) {
                                         value: {
                                             name: {
                                                 ident: `--s-color-${args.values.name}-l`,
-                                                from: null,
                                             },
-                                            fallback: null,
                                         },
                                     },
                                 ],

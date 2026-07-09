@@ -75,9 +75,7 @@ export default function color(v: any, settings: TSugarCssSettings): any {
                     value: {
                       name: {
                         ident: `--s-color-${args.values.name}-o`,
-                        from: null,
                       },
-                      fallback: null,
                     },
                   },
                 ],
@@ -93,9 +91,7 @@ export default function color(v: any, settings: TSugarCssSettings): any {
                     value: {
                       name: {
                         ident: `--s-color-${args.values.name}-h`,
-                        from: null,
                       },
-                      fallback: null,
                     },
                   },
                 ],
@@ -111,9 +107,7 @@ export default function color(v: any, settings: TSugarCssSettings): any {
                     value: {
                       name: {
                         ident: `--s-color-${args.values.name}-s`,
-                        from: null,
                       },
-                      fallback: null,
                     },
                   },
                 ],
@@ -129,9 +123,7 @@ export default function color(v: any, settings: TSugarCssSettings): any {
                     value: {
                       name: {
                         ident: `--s-color-${args.values.name}-l`,
-                        from: null,
                       },
-                      fallback: null,
                     },
                   },
                 ],

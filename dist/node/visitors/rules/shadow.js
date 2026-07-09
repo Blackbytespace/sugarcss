@@ -62,9 +62,7 @@ export default function shadow(v, settings) {
                                         value: {
                                             name: {
                                                 ident: `--s-shadow-${args.values.name}`,
-                                                from: null,
                                             },
-                                            fallback: null,
                                         },
                                     },
                                 ],

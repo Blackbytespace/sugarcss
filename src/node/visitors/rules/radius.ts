@@ -76,9 +76,7 @@ export default function radius(v: any, settings: TSugarCssSettings): any {
                     value: {
                       name: {
                         ident: `--s-radius-${args.values.name}-${corner}`,
-                        from: null,
                       },
-                      fallback: null,
                     },
                   },
                 ],

@@ -202,16 +202,16 @@ export default function sugarcss(
   let resetSugarcssJsonTimeout: any = null;
 
   const visitors = {
-    Length(length) {
-      // auto convert to rem
-      if (env.settings.pxToRem && length.unit === 'px') {
-        return {
-          unit: 'rem',
-          value: length.value * env.settings.remFactor,
-        };
-      }
-      return length;
-    },
+    // Length(length) {
+    //   // auto convert to rem
+    //   if (env.settings.pxToRem && length.unit === 'px') {
+    //     return {
+    //       unit: 'rem',
+    //       value: length.value * env.settings.remFactor,
+    //     };
+    //   }
+    //   return length;
+    // },
 
     StyleSheetExit() {
       // handle sugarcss.json stuffs
@@ -276,8 +276,12 @@ export default function sugarcss(
       opacity(decl) {
         if (decl.value === 0 && finalSettings.opacityZeroValue !== undefined) {
           decl.value = finalSettings.opacityZeroValue;
+          return decl;
         }
-        return decl;
+        // return nothing when unchanged so lightningcss keeps its original node.
+        // returning the passed-in `decl` would force a re-deserialization that
+        // fails on values lightningcss parsed itself but cannot round-trip,
+        // e.g. `opacity: var(--x)` whose dashed-ident carries `from: null`.
       },
       custom(v) {
         if (v.name === 'custom') {

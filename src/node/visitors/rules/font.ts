@@ -70,9 +70,7 @@ export default function font(v: any, settings: TSugarCssSettings): any {
                     value: {
                       name: {
                         ident: `--s-font-${args.values.name}-family`,
-                        from: null,
                       },
-                      fallback: null,
                     },
                   },
                 ],
@@ -91,9 +89,7 @@ export default function font(v: any, settings: TSugarCssSettings): any {
                     value: {
                       name: {
                         ident: `--s-font-${args.values.name}-weight`,
-                        from: null,
                       },
-                      fallback: null,
                     },
                   },
                 ],
@@ -112,9 +108,7 @@ export default function font(v: any, settings: TSugarCssSettings): any {
                     value: {
                       name: {
                         ident: `--s-font-${args.values.name}-style`,
-                        from: null,
                       },
-                      fallback: null,
                     },
                   },
                 ],
@@ -133,9 +127,7 @@ export default function font(v: any, settings: TSugarCssSettings): any {
                     value: {
                       name: {
                         ident: `--s-font-${args.values.name}-variant`,
-                        from: null,
                       },
-                      fallback: null,
                     },
                   },
                 ],

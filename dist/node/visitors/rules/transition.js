@@ -87,9 +87,7 @@ export default function transition(v, settings) {
                                         value: {
                                             name: {
                                                 ident: `--s-transition-${name}-${prop}`,
-                                                from: null,
                                             },
-                                            fallback: null,
                                         },
                                     },
                                 ],

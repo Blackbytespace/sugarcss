@@ -67,9 +67,7 @@ export default function color(v, settings: TSugarCssSettings): any {
               value: {
                 name: {
                   ident: `--s-color-${colorName}${key}`,
-                  from: null,
                 },
-                fallback: null,
               },
             },
           ],

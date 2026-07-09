@@ -53,9 +53,7 @@ export default function color(v, settings) {
                             value: {
                                 name: {
                                     ident: `--s-color-${colorName}${key}`,
-                                    from: null,
                                 },
-                                fallback: null,
                             },
                         },
                     ],

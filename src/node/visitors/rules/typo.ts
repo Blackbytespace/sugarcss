@@ -71,9 +71,7 @@ export default function typo(v: any, settings: TSugarCssSettings): any {
                     value: {
                       name: {
                         ident: `--s-typo-${args.values.name}-font`,
-                        from: null,
                       },
-                      fallback: null,
                     },
                   },
                 ],
@@ -92,7 +90,6 @@ export default function typo(v: any, settings: TSugarCssSettings): any {
                     value: {
                       name: {
                         ident: `--s-typo-${args.values.name}-size`,
-                        from: null,
                       },
                       fallback: [
                         {
@@ -121,7 +118,6 @@ export default function typo(v: any, settings: TSugarCssSettings): any {
                     value: {
                       name: {
                         ident: `--s-typo-${args.values.name}-line-height`,
-                        from: null,
                       },
                       fallback: [
                         {
@@ -150,7 +146,6 @@ export default function typo(v: any, settings: TSugarCssSettings): any {
                     value: {
                       name: {
                         ident: `--s-typo-${args.values.name}-letter-spacing`,
-                        from: null,
                       },
                       fallback: [
                         {
@@ -179,9 +174,7 @@ export default function typo(v: any, settings: TSugarCssSettings): any {
                     value: {
                       name: {
                         ident: `--s-typo-${args.values.name}-text-transform`,
-                        from: null,
                       },
-                      fallback: null,
                     },
                   },
                 ],
@@ -200,9 +193,7 @@ export default function typo(v: any, settings: TSugarCssSettings): any {
                     value: {
                       name: {
                         ident: `--s-typo-${args.values.name}-text-decoration`,
-                        from: null,
                       },
-                      fallback: null,
                     },
                   },
                 ],

@@ -1,4 +1,44 @@
 import { env } from '../../sugarcss.js';
+// The media visitor returns its inner rules/declarations untouched, which forces
+// lightningcss to re-deserialize them. lightningcss >= 1.32 is strict about that
+// pass-through and rejects two things it happily emitted itself:
+//  - `null` optional fields (e.g. an unknown at-rule's `block: null`, which is
+//    expected to be a sequence) -> must be omitted
+//  - a `length` whose value is a whole number >= 65536 (napi serializes it as
+//    i64, not the expected 32-bit float, e.g. `999999px`) -> emit a dimension
+//    token instead, which accepts integers and renders identically
+// This cleans the returned media rule so it can be deserialized again.
+function sanitizePassthrough(node) {
+    if (Array.isArray(node)) {
+        return node.map((item) => sanitizePassthrough(item));
+    }
+    if (node && typeof node === 'object') {
+        if (node.type === 'length' &&
+            node.value &&
+            typeof node.value.value === 'number' &&
+            typeof node.value.unit === 'string' &&
+            Number.isInteger(node.value.value) &&
+            Math.abs(node.value.value) > 65535) {
+            return {
+                type: 'token',
+                value: {
+                    type: 'dimension',
+                    value: node.value.value,
+                    unit: node.value.unit,
+                },
+            };
+        }
+        const result = {};
+        for (const key of Object.keys(node)) {
+            if (node[key] === null || node[key] === undefined) {
+                continue;
+            }
+            result[key] = sanitizePassthrough(node[key]);
+        }
+        return result;
+    }
+    return node;
+}
 /**
  * @name            s-media
  * @namespace       css.rule
@@ -56,6 +96,7 @@ import { env } from '../../sugarcss.js';
  */
 export default function media(v, settings) {
     var _a, _b, _c, _d, _e;
+    v = sanitizePassthrough(v);
     for (let mediaQuery of v.value.query.mediaQueries) {
         const possibleMedias = [];
         ['lt-', 'lte-', 'e-', 'gt-', 'gte-', ''].forEach((operator) => {

@@ -88,7 +88,6 @@ export default function gridAst(gridArgs) {
                                     kind: 'nth-child',
                                     a: 0,
                                     b: parseInt(areaId),
-                                    of: null,
                                 },
                             ],
                         ],
@@ -130,7 +129,6 @@ export default function gridAst(gridArgs) {
                                     value: {
                                         type: 'line',
                                         index: gridArgs.rowsStartByArea[areaId],
-                                        name: null,
                                     },
                                 },
                                 {
@@ -138,7 +136,6 @@ export default function gridAst(gridArgs) {
                                     value: {
                                         type: 'line',
                                         index: gridArgs.rowsEndByArea[areaId] + 1,
-                                        name: null,
                                     },
                                 },
                             ],

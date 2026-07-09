@@ -75,20 +75,17 @@ export default function gridAst(gridArgs: TSugarCssGridAstArgs): {
                     kind?: undefined;
                     a?: undefined;
                     b?: undefined;
-                    of?: undefined;
                 } | {
                     type: string;
                     value: string;
                     kind?: undefined;
                     a?: undefined;
                     b?: undefined;
-                    of?: undefined;
                 } | {
                     type: string;
                     kind: string;
                     a: number;
                     b: number;
-                    of: null;
                     value?: undefined;
                 })[][];
                 declarations: {
@@ -112,7 +109,7 @@ export default function gridAst(gridArgs: TSugarCssGridAstArgs): {
                         value: {
                             type: string;
                             index: number;
-                            name: null;
+                            name?: undefined;
                             value?: undefined;
                         };
                     })[];

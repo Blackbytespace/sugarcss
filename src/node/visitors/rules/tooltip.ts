@@ -168,9 +168,7 @@ export default function tooltip(v: any, settings: TSugarCssSettings): any {
                     value: {
                       name: {
                         ident: '--s-tooltip-background',
-                        from: null,
                       },
-                      fallback: null,
                     },
                   },
                 ],
@@ -207,9 +205,7 @@ export default function tooltip(v: any, settings: TSugarCssSettings): any {
                           value: {
                             name: {
                               ident: '--s-tooltip-arrow-size',
-                              from: null,
                             },
-                            fallback: null,
                           },
                         },
                         {
@@ -224,9 +220,7 @@ export default function tooltip(v: any, settings: TSugarCssSettings): any {
                           value: {
                             name: {
                               ident: '--s-tooltip-offset',
-                              from: null,
                             },
-                            fallback: null,
                           },
                         },
                       ],
@@ -278,7 +272,6 @@ export default function tooltip(v: any, settings: TSugarCssSettings): any {
                 y: {
                   type: 'side',
                   side: 'top',
-                  offset: null,
                 },
               },
             },
@@ -421,9 +414,7 @@ export default function tooltip(v: any, settings: TSugarCssSettings): any {
                           value: {
                             name: {
                               ident: '--s-tooltip-arrow-size',
-                              from: null,
                             },
-                            fallback: null,
                           },
                         },
                         {
@@ -458,9 +449,7 @@ export default function tooltip(v: any, settings: TSugarCssSettings): any {
                     value: {
                       name: {
                         ident: '--s-tooltip-arrow-size',
-                        from: null,
                       },
-                      fallback: null,
                     },
                   },
                 ],
@@ -487,9 +476,7 @@ export default function tooltip(v: any, settings: TSugarCssSettings): any {
                     value: {
                       name: {
                         ident: '--s-tooltip-background',
-                        from: null,
                       },
-                      fallback: null,
                     },
                   },
                   {
@@ -610,9 +597,7 @@ export default function tooltip(v: any, settings: TSugarCssSettings): any {
                           value: {
                             name: {
                               ident: '--s-tooltip-arrow-size',
-                              from: null,
                             },
-                            fallback: null,
                           },
                         },
                         {
@@ -627,9 +612,7 @@ export default function tooltip(v: any, settings: TSugarCssSettings): any {
                           value: {
                             name: {
                               ident: '--s-tooltip-offset',
-                              from: null,
                             },
-                            fallback: null,
                           },
                         },
                       ],
@@ -725,9 +708,7 @@ export default function tooltip(v: any, settings: TSugarCssSettings): any {
                           value: {
                             name: {
                               ident: '--s-tooltip-arrow-size',
-                              from: null,
                             },
-                            fallback: null,
                           },
                         },
                         {
@@ -828,9 +809,7 @@ export default function tooltip(v: any, settings: TSugarCssSettings): any {
                           value: {
                             name: {
                               ident: '--s-tooltip-arrow-size',
-                              from: null,
                             },
-                            fallback: null,
                           },
                         },
                         {
@@ -845,9 +824,7 @@ export default function tooltip(v: any, settings: TSugarCssSettings): any {
                           value: {
                             name: {
                               ident: '--s-tooltip-offset',
-                              from: null,
                             },
-                            fallback: null,
                           },
                         },
                       ],
@@ -1032,9 +1009,7 @@ export default function tooltip(v: any, settings: TSugarCssSettings): any {
                           value: {
                             name: {
                               ident: '--s-tooltip-arrow-size',
-                              from: null,
                             },
-                            fallback: null,
                           },
                         },
                         {
@@ -1049,9 +1024,7 @@ export default function tooltip(v: any, settings: TSugarCssSettings): any {
                           value: {
                             name: {
                               ident: '--s-tooltip-offset',
-                              from: null,
                             },
-                            fallback: null,
                           },
                         },
                       ],

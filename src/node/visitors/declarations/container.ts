@@ -58,18 +58,34 @@ export default function container(v, settings: TSugarCssSettings): any {
       property: `--s-container-${name}-${dashCase(key)}`,
       value: {
         name: `--s-container-${name}-${dashCase(key)}`,
-        value: [
-          {
-            type: 'length',
-            value: {
-              unit: 'px',
-              value,
-            },
-          },
-        ],
+        value: [lengthToken(value as number)],
       },
     });
   }
 
   return result;
+}
+
+// lightningcss >= 1.32 refuses to deserialize a `length` whose value is a whole
+// number >= 65536 (napi serializes it as i64, not the expected 32-bit float).
+// For those, emit a dimension token instead, which accepts integers and renders
+// identically. Smaller values keep using a regular length.
+function lengthToken(value: number): any {
+  if (Number.isInteger(value) && Math.abs(value) > 65535) {
+    return {
+      type: 'token',
+      value: {
+        type: 'dimension',
+        value,
+        unit: 'px',
+      },
+    };
+  }
+  return {
+    type: 'length',
+    value: {
+      unit: 'px',
+      value,
+    },
+  };
 }

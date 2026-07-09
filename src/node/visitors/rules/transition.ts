@@ -95,9 +95,7 @@ export default function transition(v: any, settings: TSugarCssSettings): any {
                     value: {
                       name: {
                         ident: `--s-transition-${name}-${prop}`,
-                        from: null,
                       },
-                      fallback: null,
                     },
                   },
                 ],

@@ -67,9 +67,7 @@ export default function radius(v, settings) {
                                         value: {
                                             name: {
                                                 ident: `--s-radius-${args.values.name}-${corner}`,
-                                                from: null,
                                             },
-                                            fallback: null,
                                         },
                                     },
                                 ],

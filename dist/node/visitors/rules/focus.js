@@ -59,9 +59,7 @@ export default function font(v, settings) {
                                         value: {
                                             name: {
                                                 ident: `--s-focus-${args.values.name}-size`,
-                                                from: null,
                                             },
-                                            fallback: null,
                                         },
                                     },
                                     {
@@ -76,9 +74,7 @@ export default function font(v, settings) {
                                         value: {
                                             name: {
                                                 ident: `--s-focus-${args.values.name}-style`,
-                                                from: null,
                                             },
-                                            fallback: null,
                                         },
                                     },
                                     {
@@ -93,9 +89,7 @@ export default function font(v, settings) {
                                         value: {
                                             name: {
                                                 ident: `--s-focus-${args.values.name}-color`,
-                                                from: null,
                                             },
-                                            fallback: null,
                                         },
                                     },
                                 ],

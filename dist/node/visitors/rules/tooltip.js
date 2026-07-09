@@ -158,9 +158,7 @@ export default function tooltip(v, settings) {
                                         value: {
                                             name: {
                                                 ident: '--s-tooltip-background',
-                                                from: null,
                                             },
-                                            fallback: null,
                                         },
                                     },
                                 ],
@@ -197,9 +195,7 @@ export default function tooltip(v, settings) {
                                                     value: {
                                                         name: {
                                                             ident: '--s-tooltip-arrow-size',
-                                                            from: null,
                                                         },
-                                                        fallback: null,
                                                     },
                                                 },
                                                 {
@@ -214,9 +210,7 @@ export default function tooltip(v, settings) {
                                                     value: {
                                                         name: {
                                                             ident: '--s-tooltip-offset',
-                                                            from: null,
                                                         },
-                                                        fallback: null,
                                                     },
                                                 },
                                             ],
@@ -268,7 +262,6 @@ export default function tooltip(v, settings) {
                                 y: {
                                     type: 'side',
                                     side: 'top',
-                                    offset: null,
                                 },
                             },
                         },
@@ -411,9 +404,7 @@ export default function tooltip(v, settings) {
                                                     value: {
                                                         name: {
                                                             ident: '--s-tooltip-arrow-size',
-                                                            from: null,
                                                         },
-                                                        fallback: null,
                                                     },
                                                 },
                                                 {
@@ -448,9 +439,7 @@ export default function tooltip(v, settings) {
                                         value: {
                                             name: {
                                                 ident: '--s-tooltip-arrow-size',
-                                                from: null,
                                             },
-                                            fallback: null,
                                         },
                                     },
                                 ],
@@ -477,9 +466,7 @@ export default function tooltip(v, settings) {
                                         value: {
                                             name: {
                                                 ident: '--s-tooltip-background',
-                                                from: null,
                                             },
-                                            fallback: null,
                                         },
                                     },
                                     {
@@ -600,9 +587,7 @@ export default function tooltip(v, settings) {
                                                     value: {
                                                         name: {
                                                             ident: '--s-tooltip-arrow-size',
-                                                            from: null,
                                                         },
-                                                        fallback: null,
                                                     },
                                                 },
                                                 {
@@ -617,9 +602,7 @@ export default function tooltip(v, settings) {
                                                     value: {
                                                         name: {
                                                             ident: '--s-tooltip-offset',
-                                                            from: null,
                                                         },
-                                                        fallback: null,
                                                     },
                                                 },
                                             ],
@@ -715,9 +698,7 @@ export default function tooltip(v, settings) {
                                                     value: {
                                                         name: {
                                                             ident: '--s-tooltip-arrow-size',
-                                                            from: null,
                                                         },
-                                                        fallback: null,
                                                     },
                                                 },
                                                 {
@@ -818,9 +799,7 @@ export default function tooltip(v, settings) {
                                                     value: {
                                                         name: {
                                                             ident: '--s-tooltip-arrow-size',
-                                                            from: null,
                                                         },
-                                                        fallback: null,
                                                     },
                                                 },
                                                 {
@@ -835,9 +814,7 @@ export default function tooltip(v, settings) {
                                                     value: {
                                                         name: {
                                                             ident: '--s-tooltip-offset',
-                                                            from: null,
                                                         },
-                                                        fallback: null,
                                                     },
                                                 },
                                             ],
@@ -1022,9 +999,7 @@ export default function tooltip(v, settings) {
                                                     value: {
                                                         name: {
                                                             ident: '--s-tooltip-arrow-size',
-                                                            from: null,
                                                         },
-                                                        fallback: null,
                                                     },
                                                 },
                                                 {
@@ -1039,9 +1014,7 @@ export default function tooltip(v, settings) {
                                                     value: {
                                                         name: {
                                                             ident: '--s-tooltip-offset',
-                                                            from: null,
                                                         },
-                                                        fallback: null,
                                                     },
                                                 },
                                             ],

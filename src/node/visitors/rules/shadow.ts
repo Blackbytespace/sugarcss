@@ -71,9 +71,7 @@ export default function shadow(v: any, settings: TSugarCssSettings): any {
                     value: {
                       name: {
                         ident: `--s-shadow-${args.values.name}`,
-                        from: null,
                       },
-                      fallback: null,
                     },
                   },
                 ],

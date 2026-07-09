@@ -42,6 +42,11 @@ export default function parseArgs(
   let argId = 0,
     currentProp = schema?.[argId] ?? `arg${argId}`;
 
+  // track consecutive separators so that a sequence like `, ` (a comma token
+  // followed by a white-space token, both declared as separators) only advances
+  // to the next argument once instead of skipping a slot.
+  let lastWasSeparator = false;
+
   const handleArg = (arg) => {
     if (finalSettings.debug) {
       console.log('arg:', arg);
@@ -64,14 +69,19 @@ export default function parseArgs(
     }
 
     if (separators.includes(arg.value.type)) {
-      argId++;
       if (finalSettings.debug) {
         console.log('separator');
       }
 
-      currentProp = schema?.[argId] ?? `arg${argId}`;
+      if (!lastWasSeparator) {
+        argId++;
+        currentProp = schema?.[argId] ?? `arg${argId}`;
+      }
+      lastWasSeparator = true;
       return;
     }
+
+    lastWasSeparator = false;
 
     if (arg.type === 'dashed-ident') {
       // flag that we are in a dashed ident
@@ -102,9 +112,13 @@ export default function parseArgs(
 
       // set the resulting value
       set(resultArgs, currentProp, arg);
-      // update current prop
+      // a function like `s-size(p)` is self-delimiting (it ends with `)`), so it
+      // already advances to the next argument. mark it as a separator so the
+      // white-space token lightningcss emits right after it is collapsed instead
+      // of advancing a second time and skipping a slot.
       currentProp = schema?.[argId + 1] ?? `arg${argId + 1}`;
       argId++;
+      lastWasSeparator = true;
     } else {
       if (finalSettings.debug) {
         console.log('h', currentProp, arg);
