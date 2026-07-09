@@ -157,16 +157,16 @@ export default function sugarcss(settings = {}) {
     let mixins = new Map();
     let resetSugarcssJsonTimeout = null;
     const visitors = {
-        // Length(length) {
-        //   // auto convert to rem
-        //   if (env.settings.pxToRem && length.unit === 'px') {
-        //     return {
-        //       unit: 'rem',
-        //       value: length.value * env.settings.remFactor,
-        //     };
-        //   }
-        //   return length;
-        // },
+        Length(length) {
+            // auto convert to rem
+            if (env.settings.pxToRem && length.unit === 'px') {
+                return {
+                    unit: 'rem',
+                    value: length.value * env.settings.remFactor,
+                };
+            }
+            return length;
+        },
         StyleSheetExit() {
             // handle sugarcss.json stuffs
             saveSugarcssJson();

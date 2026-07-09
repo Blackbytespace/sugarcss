@@ -202,16 +202,16 @@ export default function sugarcss(
   let resetSugarcssJsonTimeout: any = null;
 
   const visitors = {
-    // Length(length) {
-    //   // auto convert to rem
-    //   if (env.settings.pxToRem && length.unit === 'px') {
-    //     return {
-    //       unit: 'rem',
-    //       value: length.value * env.settings.remFactor,
-    //     };
-    //   }
-    //   return length;
-    // },
+    Length(length) {
+      // auto convert to rem
+      if (env.settings.pxToRem && length.unit === 'px') {
+        return {
+          unit: 'rem',
+          value: length.value * env.settings.remFactor,
+        };
+      }
+      return length;
+    },
 
     StyleSheetExit() {
       // handle sugarcss.json stuffs
