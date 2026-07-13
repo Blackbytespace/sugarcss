@@ -131,6 +131,52 @@ console.log = (...args): void => {
   });
 };
 
+/**
+ * Recursively drop keys whose value is `null`.
+ * When we replay AST that lightningcss itself produced (e.g. a captured @mixin
+ * body), lightningcss cannot re-deserialize optional fields that carry an
+ * explicit `null` (e.g. `block: null` on an UnknownAtRule, `from: null` on a
+ * DashedIdentReference/Specifier) and throws "failed to deserialize; expected
+ * ... found ()". An omitted key and a `null` key are semantically identical for
+ * these optional fields (both -> None), so stripping them is behavior-preserving.
+ */
+function stripNullFields<T>(node: T): T {
+  if (Array.isArray(node)) {
+    return node.map(stripNullFields) as unknown as T;
+  }
+  if (node && typeof node === 'object') {
+    const out: any = {};
+    for (const k of Object.keys(node)) {
+      const v = (node as any)[k];
+      if (v === null) continue;
+      out[k] = stripNullFields(v);
+    }
+    return out;
+  }
+  return node;
+}
+
+/**
+ * Recursively wrap every visitor callback so its return value is run through
+ * `stripNullFields`. Visitors that re-emit AST originally parsed by lightningcss
+ * (e.g. a declaration value containing `var(--x)`, or a replayed @mixin body)
+ * carry explicit `null` on optional fields that lightningcss cannot round-trip.
+ * Sanitizing every return value fixes this generically for all visitors.
+ */
+function wrapVisitorReturns(node: any): any {
+  if (typeof node === 'function') {
+    return (...args: any[]) => stripNullFields(node(...args));
+  }
+  if (node && typeof node === 'object') {
+    const out: any = Array.isArray(node) ? [] : {};
+    for (const k of Object.keys(node)) {
+      out[k] = wrapVisitorReturns(node[k]);
+    }
+    return out;
+  }
+  return node;
+}
+
 export function sugarize(
   ligningcss?: TransformOptions<any>,
   settings?: Partial<TSugarCssSettings>,
@@ -408,5 +454,5 @@ export default function sugarcss(
     },
   };
 
-  return visitors;
+  return wrapVisitorReturns(visitors);
 }
