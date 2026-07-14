@@ -53,7 +53,6 @@ export type TSugarCssJson = {
 };
 
 export type TSugarCssEnv = {
-  persistentEnvs: string[];
   functions: Record<string, Function>;
   rules: Record<string, Function>;
   settings: TSugarCssSettings;

@@ -4,9 +4,10 @@ import {
   TransformOptions,
   browserslistToTargets,
   composeVisitors,
+  transform,
 } from 'lightningcss';
 import { TSugarCssEnv, TSugarCssSettings } from './sugarcss.types.js';
-import { loadPersistentEnv } from './utils/loadPersistentEnv.js';
+import { collectSettingsCss } from './utils/collectSettingsCss.js';
 import { resetSugarcssJson, saveSugarcssJson } from './utils/sugarcssJson.js';
 import colorDeclaration from './visitors/declarations/color.js';
 import containerDeclaration from './visitors/declarations/container.js';
@@ -62,15 +63,11 @@ import visuallyHiddenRule from './visitors/rules/visuallyHidden.js';
 import weightRule from './visitors/rules/weight.js';
 import zindexRule from './visitors/rules/zindex.js';
 
-// read the "envs" saved on disk to avoid issue with
-// some lightningcss integrations that launch a complete
-// new process of this and does not load the `sugarcss.css` file.
-// this is only used to have persistent envs accross multiple
-// executions of sugarcss (like medias and grids)
-const persistentEnv = loadPersistentEnv();
-
+// `env` starts from its literal defaults. Build-time state (medias, grids,
+// responsives, settings) is populated deterministically by the declarations
+// pre-pass in `sugarize()` before any component css is compiled — see
+// `collectSettingsCss` — so no disk cache is needed.
 export const env: TSugarCssEnv = {
-  persistentEnvs: ['medias', 'grids', 'settings'],
   functions: {},
   rules: {},
   easingFunctions: {
@@ -109,7 +106,6 @@ export const env: TSugarCssEnv = {
     max: 100,
   },
   shadows: {},
-  ...persistentEnv,
   settings: {
     remFactor: 0.0625,
     verbose: false,
@@ -117,7 +113,6 @@ export const env: TSugarCssEnv = {
     scalable: ['padding'],
     pxToRem: true,
     opacityZeroValue: 0.0001,
-    ...(persistentEnv.settings ?? {}),
   },
 };
 
@@ -177,10 +172,37 @@ function wrapVisitorReturns(node: any): any {
   return node;
 }
 
+// guard so the declarations pre-pass runs only once per process
+let envPopulated = false;
+
 export function sugarize(
   ligningcss?: TransformOptions<any>,
   settings?: Partial<TSugarCssSettings>,
 ): any {
+  // pass 1: run the declaration visitors over the project settings css to
+  // populate the env singleton (medias, grids, responsives, settings) BEFORE
+  // any component css is compiled. This makes at-rules like `@media md` and
+  // `s-responsive()` resolve regardless of the order lightningcss processes
+  // files (it transforms each file independently and does not follow @import).
+  // The declarations-only visitor carries no `customAtRules`, so `@include` /
+  // `@mixin` / `@import` degrade to harmless pass-through instead of throwing.
+  if (!envPopulated) {
+    envPopulated = true;
+    const declVisitor = composeVisitors([
+      sugarcss(settings, { declarationsOnly: true }),
+    ]);
+    for (const css of collectSettingsCss()) {
+      try {
+        transform({
+          filename: 'sugarcss-settings.css',
+          code: new TextEncoder().encode(css),
+          visitor: declVisitor,
+        });
+      } catch (e) {}
+    }
+  }
+
+  // pass 2: the full visitor used to actually compile every css file.
   const visitor = [sugarcss(settings)];
   if (ligningcss?.visitor) {
     visitor.push(ligningcss.visitor);
@@ -205,6 +227,7 @@ export function sugarize(
 
 export default function sugarcss(
   settings: Partial<TSugarCssSettings> = {},
+  opts: { declarationsOnly?: boolean } = {},
 ): any {
   const finalSettings: TSugarCssSettings = {
     ...env.settings,
@@ -453,6 +476,13 @@ export default function sugarcss(
       },
     },
   };
+
+  // declarations-only mode (pass 1): expose only the Declaration dispatch so
+  // the settings css can be replayed purely to populate the env singleton,
+  // without functions/rules/mixins firing.
+  if (opts.declarationsOnly) {
+    return wrapVisitorReturns({ Declaration: visitors.Declaration });
+  }
 
   return wrapVisitorReturns(visitors);
 }

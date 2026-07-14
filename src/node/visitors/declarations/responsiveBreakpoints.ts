@@ -1,7 +1,6 @@
 import { env } from '../../sugarcss.js';
 import { TSugarCssSettings } from '../../sugarcss.types.js';
 import parseArgs from '../../utils/parseArgs.js';
-import { savePersistentEnv } from '../../utils/savePersistentEnv.js';
 import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 
 /**
@@ -73,8 +72,6 @@ export default function responsiveBreakpoints(
       )}</yellow>`,
     );
   }
-
-  savePersistentEnv();
 
   return result;
 }

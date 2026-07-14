@@ -1,6 +1,5 @@
 import { env } from '../../sugarcss.js';
 import parseArgs from '../../utils/parseArgs.js';
-import { savePersistentEnv } from '../../utils/savePersistentEnv.js';
 import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 /**
  * @name            s-grid
@@ -70,8 +69,6 @@ export default function grid(v, settings) {
         delete displayLayout.ast;
         console.log(`Registered grid <cyan>${name}</cyan>: <yellow>${JSON.stringify(displayLayout)}</yellow>`);
     }
-    // save persistent env
-    savePersistentEnv();
     return result;
 }
 //# sourceMappingURL=grid.js.map

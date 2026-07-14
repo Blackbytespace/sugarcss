@@ -46,7 +46,6 @@ export type TSugarCssJson = {
     typos: Record<string, TSugarCssTypo>;
 };
 export type TSugarCssEnv = {
-    persistentEnvs: string[];
     functions: Record<string, Function>;
     rules: Record<string, Function>;
     settings: TSugarCssSettings;

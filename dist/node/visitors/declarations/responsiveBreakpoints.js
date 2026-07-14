@@ -1,6 +1,5 @@
 import { env } from '../../sugarcss.js';
 import parseArgs from '../../utils/parseArgs.js';
-import { savePersistentEnv } from '../../utils/savePersistentEnv.js';
 import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 /**
  * @name            s-responsive-breakpoints
@@ -59,7 +58,6 @@ export default function responsiveBreakpoints(v, settings) {
     if (settings.verbose) {
         console.log(`Registered responsive breakpoints: <yellow>${JSON.stringify(env.responsives['breakpoints'])}</yellow>`);
     }
-    savePersistentEnv();
     return result;
 }
 //# sourceMappingURL=responsiveBreakpoints.js.map

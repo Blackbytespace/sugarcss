@@ -1,6 +1,5 @@
 import { env } from '../../sugarcss.js';
 import parseArgs from '../../utils/parseArgs.js';
-import { savePersistentEnv } from '../../utils/savePersistentEnv.js';
 import { setSugarcssJson } from '../../utils/sugarcssJson.js';
 /**
  * @name            s-media
@@ -77,8 +76,6 @@ export default function media(v, settings) {
     if (settings.verbose) {
         console.log(`Registered media: <cyan>${media}</cyan>: <yellow>${JSON.stringify(env.medias[media])}</yellow>`);
     }
-    // save persistent env
-    savePersistentEnv();
     return result;
 }
 //# sourceMappingURL=media.js.map
