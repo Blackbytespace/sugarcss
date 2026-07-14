@@ -4,12 +4,6 @@ import { deepMerge } from '@blackbyte/sugar/object';
 import { nodeModulesDir } from '@blackbyte/sugar/package';
 import fs from 'fs';
 const sugarcssJson = {};
-let saveTimeout = null;
-export function resetSugarcssJson() {
-    for (let [key, value] of Object.entries(sugarcssJson)) {
-        delete sugarcssJson[key];
-    }
-}
 export function getSugarcssJson() {
     const sugarCssPersistentDir = `${nodeModulesDir({
         checkExistence: false,
@@ -43,21 +37,18 @@ export function applyColorShades() {
         }
     }
 }
-export function saveSugarcssJson(timeout = 1000) {
-    clearTimeout(saveTimeout);
+export function saveSugarcssJson() {
+    if (!Object.keys(sugarcssJson).length) {
+        // nothing to save
+        return;
+    }
     const sugarCssPersistentDir = `${nodeModulesDir({
         checkExistence: false,
     })}/.sugarcss`;
     const sugarcssPersistentFilePath = `${sugarCssPersistentDir}/sugarcss.json`;
     ensureDirSync(sugarCssPersistentDir);
-    saveTimeout = setTimeout(() => {
-        if (!Object.keys(sugarcssJson).length) {
-            // nothing to save
-            return;
-        }
-        applyColorShades();
-        fs.writeFileSync(sugarcssPersistentFilePath, JSON.stringify(sugarcssJson, null, 2), 'utf-8');
-    }, timeout);
+    applyColorShades();
+    fs.writeFileSync(sugarcssPersistentFilePath, JSON.stringify(sugarcssJson, null, 2), 'utf-8');
 }
 export default sugarcssJson;
 //# sourceMappingURL=sugarcssJson.js.map

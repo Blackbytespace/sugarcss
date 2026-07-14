@@ -7,14 +7,6 @@ import { TSugarCssJson } from '../sugarcss.types.js';
 
 const sugarcssJson: Partial<TSugarCssJson> = {};
 
-let saveTimeout: any = null;
-
-export function resetSugarcssJson() {
-  for (let [key, value] of Object.entries(sugarcssJson)) {
-    delete sugarcssJson[key];
-  }
-}
-
 export function getSugarcssJson(): Partial<TSugarCssJson> {
   const sugarCssPersistentDir = `${nodeModulesDir({
     checkExistence: false,
@@ -59,8 +51,11 @@ export function applyColorShades(): void {
   }
 }
 
-export function saveSugarcssJson(timeout: number = 1000): void {
-  clearTimeout(saveTimeout);
+export function saveSugarcssJson(): void {
+  if (!Object.keys(sugarcssJson).length) {
+    // nothing to save
+    return;
+  }
 
   const sugarCssPersistentDir = `${nodeModulesDir({
     checkExistence: false,
@@ -68,20 +63,13 @@ export function saveSugarcssJson(timeout: number = 1000): void {
   const sugarcssPersistentFilePath = `${sugarCssPersistentDir}/sugarcss.json`;
   ensureDirSync(sugarCssPersistentDir);
 
-  saveTimeout = setTimeout(() => {
-    if (!Object.keys(sugarcssJson).length) {
-      // nothing to save
-      return;
-    }
+  applyColorShades();
 
-    applyColorShades();
-
-    fs.writeFileSync(
-      sugarcssPersistentFilePath,
-      JSON.stringify(sugarcssJson, null, 2),
-      'utf-8',
-    );
-  }, timeout);
+  fs.writeFileSync(
+    sugarcssPersistentFilePath,
+    JSON.stringify(sugarcssJson, null, 2),
+    'utf-8',
+  );
 }
 
 export default sugarcssJson;

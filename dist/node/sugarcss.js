@@ -2,7 +2,7 @@ import { parseHtml } from '@blackbyte/sugar/console';
 import browserslist from 'browserslist';
 import { browserslistToTargets, composeVisitors, transform, } from 'lightningcss';
 import { collectSettingsCss } from './utils/collectSettingsCss.js';
-import { resetSugarcssJson, saveSugarcssJson } from './utils/sugarcssJson.js';
+import { saveSugarcssJson } from './utils/sugarcssJson.js';
 import colorDeclaration from './visitors/declarations/color.js';
 import containerDeclaration from './visitors/declarations/container.js';
 import delayDeclaration from './visitors/declarations/delay.js';
@@ -188,6 +188,10 @@ export function sugarize(ligningcss, settings) {
             }
             catch (e) { }
         }
+        // the accumulator now holds the complete TSugarCssJson from every settings
+        // declaration, so export it deterministically to
+        // `node_modules/.sugarcss/sugarcss.json` (with color shades applied).
+        saveSugarcssJson();
     }
     // pass 2: the full visitor used to actually compile every css file.
     const visitor = [sugarcss(settings)];
@@ -241,7 +245,6 @@ export default function sugarcss(settings = {}, opts = {}) {
     env.rules['s-visually-hidden'] = visuallyHiddenRule;
     env.rules['s-shadow'] = shadowRule;
     let mixins = new Map();
-    let resetSugarcssJsonTimeout = null;
     const visitors = {
         Length(length) {
             // auto convert to rem
@@ -252,14 +255,6 @@ export default function sugarcss(settings = {}, opts = {}) {
                 };
             }
             return length;
-        },
-        StyleSheetExit() {
-            // handle sugarcss.json stuffs
-            saveSugarcssJson();
-            clearInterval(resetSugarcssJsonTimeout);
-            resetSugarcssJsonTimeout = setTimeout(() => {
-                resetSugarcssJson();
-            }, 1000);
         },
         Function: {
             [`s-color`](v) {
