@@ -82,7 +82,7 @@ export type TSugarCssTransition = {
 
 export type TSugarCssContainer = {
   minWidth: number;
-  maxWIdth: number;
+  maxWidth: number;
   sidePadding: number;
 };
 

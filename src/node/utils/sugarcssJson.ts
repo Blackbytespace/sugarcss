@@ -5,42 +5,49 @@ import { nodeModulesDir } from '@blackbyte/sugar/package';
 import fs from 'fs';
 import { TSugarCssJson } from '../sugarcss.types.js';
 
-const sugarcssJson: Partial<TSugarCssJson> = {};
+const _sugarcssJson: Partial<TSugarCssJson> = {};
 
-export function getSugarcssJson(): Partial<TSugarCssJson> {
+/**
+ * Returns the content of the `node_modules/.sugarcss/sugarcss.json` file.
+ * If the file does not exist, an empty object is returned.
+ */
+export function sugarcssJson(): Partial<TSugarCssJson> {
   const sugarCssPersistentDir = `${nodeModulesDir({
     checkExistence: false,
   })}/.sugarcss`;
   const sugarcssPersistentFilePath = `${sugarCssPersistentDir}/sugarcss.json`;
   if (!fs.existsSync(sugarcssPersistentFilePath)) {
-    return sugarcssJson;
+    return {};
   }
-  const json = JSON.parse(fs.readFileSync(sugarcssPersistentFilePath, 'utf-8'));
-  return json;
+  return JSON.parse(fs.readFileSync(sugarcssPersistentFilePath, 'utf-8'));
+}
+
+export function getSugarcssJson(): Partial<TSugarCssJson> {
+  return sugarcssJson();
 }
 
 export function setSugarcssJson(props: Partial<TSugarCssJson>) {
-  deepMerge([sugarcssJson, props], {
+  deepMerge([_sugarcssJson, props], {
     clone: false,
   });
 }
 
 export function applyColorShades(): void {
   if (
-    !sugarcssJson.colors ||
-    !Object.keys(sugarcssJson.colors).length ||
-    !sugarcssJson.shades ||
-    !Object.keys(sugarcssJson.shades).length
+    !_sugarcssJson.colors ||
+    !Object.keys(_sugarcssJson.colors).length ||
+    !_sugarcssJson.shades ||
+    !Object.keys(_sugarcssJson.shades).length
   ) {
     return;
   }
 
-  for (let [colorName, colorValue] of Object.entries(sugarcssJson.colors)) {
+  for (let [colorName, colorValue] of Object.entries(_sugarcssJson.colors)) {
     if (!colorValue?.shades) {
       colorValue.shades = {};
     }
     for (let [shadeName, shadeModifiers] of Object.entries(
-      sugarcssJson.shades!,
+      _sugarcssJson.shades!,
     )) {
       // save back the color with shade
       colorValue.shades[shadeName] = applyModifiers(
@@ -52,7 +59,7 @@ export function applyColorShades(): void {
 }
 
 export function saveSugarcssJson(): void {
-  if (!Object.keys(sugarcssJson).length) {
+  if (!Object.keys(_sugarcssJson).length) {
     // nothing to save
     return;
   }
@@ -67,9 +74,9 @@ export function saveSugarcssJson(): void {
 
   fs.writeFileSync(
     sugarcssPersistentFilePath,
-    JSON.stringify(sugarcssJson, null, 2),
+    JSON.stringify(_sugarcssJson, null, 2),
     'utf-8',
   );
 }
 
-export default sugarcssJson;
+export default _sugarcssJson;
