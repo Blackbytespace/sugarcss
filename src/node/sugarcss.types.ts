@@ -102,6 +102,7 @@ export type TSugarCssSettings = {
   scalable: string[];
   pxToRem: boolean;
   opacityZeroValue?: number;
+  sugarcssJsonPath?: string;
 };
 
 export type TSugarCssSpace = {

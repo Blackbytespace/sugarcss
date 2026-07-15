@@ -106,6 +106,7 @@ export const env = {
         scalable: ['padding'],
         pxToRem: true,
         opacityZeroValue: 0.0001,
+        sugarcssJsonPath: undefined,
     },
 };
 const nativeConsoleLog = console.log;
@@ -191,7 +192,7 @@ export function sugarize(ligningcss, settings) {
         // the accumulator now holds the complete TSugarCssJson from every settings
         // declaration, so export it deterministically to
         // `node_modules/.sugarcss/sugarcss.json` (with color shades applied).
-        saveSugarcssJson();
+        saveSugarcssJson(settings);
     }
     // pass 2: the full visitor used to actually compile every css file.
     const visitor = [sugarcss(settings)];

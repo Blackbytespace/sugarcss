@@ -1,30 +1,11 @@
 import { applyModifiers } from '@blackbyte/sugar/color';
 import { ensureDirSync } from '@blackbyte/sugar/fs';
 import { deepMerge } from '@blackbyte/sugar/object';
-import { nodeModulesDir } from '@blackbyte/sugar/package';
 import fs from 'fs';
-import { TSugarCssJson } from '../sugarcss.types.js';
+import path from 'path';
+import { TSugarCssJson, TSugarCssSettings } from '../sugarcss.types.js';
 
 const _sugarcssJson: Partial<TSugarCssJson> = {};
-
-/**
- * Returns the content of the `node_modules/.sugarcss/sugarcss.json` file.
- * If the file does not exist, an empty object is returned.
- */
-export function sugarcssJson(): Partial<TSugarCssJson> {
-  const sugarCssPersistentDir = `${nodeModulesDir({
-    checkExistence: false,
-  })}/.sugarcss`;
-  const sugarcssPersistentFilePath = `${sugarCssPersistentDir}/sugarcss.json`;
-  if (!fs.existsSync(sugarcssPersistentFilePath)) {
-    return {};
-  }
-  return JSON.parse(fs.readFileSync(sugarcssPersistentFilePath, 'utf-8'));
-}
-
-export function getSugarcssJson(): Partial<TSugarCssJson> {
-  return sugarcssJson();
-}
 
 export function setSugarcssJson(props: Partial<TSugarCssJson>) {
   deepMerge([_sugarcssJson, props], {
@@ -58,22 +39,19 @@ export function applyColorShades(): void {
   }
 }
 
-export function saveSugarcssJson(): void {
-  if (!Object.keys(_sugarcssJson).length) {
+export function saveSugarcssJson(settings?: Partial<TSugarCssSettings>): void {
+  if (!Object.keys(_sugarcssJson).length || !settings?.sugarcssJsonPath) {
     // nothing to save
     return;
   }
+  const dirPath = path.dirname(settings.sugarcssJsonPath);
 
-  const sugarCssPersistentDir = `${nodeModulesDir({
-    checkExistence: false,
-  })}/.sugarcss`;
-  const sugarcssPersistentFilePath = `${sugarCssPersistentDir}/sugarcss.json`;
-  ensureDirSync(sugarCssPersistentDir);
+  ensureDirSync(dirPath);
 
   applyColorShades();
 
   fs.writeFileSync(
-    sugarcssPersistentFilePath,
+    settings.sugarcssJsonPath,
     JSON.stringify(_sugarcssJson, null, 2),
     'utf-8',
   );
